@@ -1,6 +1,7 @@
 require 'open-uri'
 
 class Stock < ApplicationRecord
+  belongs_to :wallet
 
    def refresh
     my_stock = {}

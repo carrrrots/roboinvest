@@ -10,6 +10,6 @@
 
   #VAI APARECER NO WALLETS INDEX
   Wallet.create!(user: user1, money: 100000.00, invested_money: 90000.00, profit: 20000.00, name: "National Wallet")
-  Wallet.create!(user: user2, money: 500000.00, invested_money: 150000.00, profit: 80000.00, name: "Investments")
-  Wallet.create!(user: user3, money: 70000.00, invested_money: 40000.00, profit: 11000.00, name: "Getting Rich Project")
-  Wallet.create!(user: user4, money: 5000.00, invested_money: 4000.00, profit: 900.00, name: "My first wallet")
+  Wallet.create!(user: user1, money: 500000.00, invested_money: 150000.00, profit: 80000.00, name: "Investments")
+  Wallet.create!(user: user1, money: 70000.00, invested_money: 40000.00, profit: 11000.00, name: "Getting Rich Project")
+  Wallet.create!(user: user1, money: 5000.00, invested_money: 4000.00, profit: 900.00, name: "My first wallet")

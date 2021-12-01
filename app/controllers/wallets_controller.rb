@@ -18,3 +18,4 @@ private
     @wallet = Wallet.find(params[:id])
   end
 end
+  
