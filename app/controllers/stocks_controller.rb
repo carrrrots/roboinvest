@@ -4,7 +4,7 @@ class StocksController < ApplicationController
 before_action :set_stock, only: %i[show]
 
   def index
-    @stocks = open_market
+    @stocks = Stock.all
   end
 
   def show; end
