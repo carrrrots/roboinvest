@@ -23,6 +23,9 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import "../js/bs-init";
+import "../js/theme";
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
