@@ -1,9 +1,7 @@
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
         <div class="container-fluid">
-          <% @wallets.each do |wallet|%>
-            <h3 class="text-dark mb-4"> Welcome <%= wallet.user %> </h3>
-          <%end%>
+            <h3 class="text-dark mb-4"> Welcome FULANO  current_user.email fazer a parte do login</h3>
             <div>
               <p>adicionar graficos bonitinhos</p>
             </div>
@@ -33,14 +31,14 @@
                                     <th>Name</th>
                                     <th>Money <i class="fas fa-coins"></i></th>
                                     <th>Invested Money</th>
-                                    <th>Profit</th>
+                                    <th>Profit <i class="fas fa-chart-line"></i></th>
                                     <th>Creation Date <i class="far fa-calendar-alt"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
                               <% @wallets.each do |wallet| %>
                                 <tr>
-                                  <td><img class="rounded-circle mr-2" width="30" height="30"><%= wallet.name %></td>
+                                  <td><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%> ><%= wallet.name %></td>
                                   <td>$<%= wallet.money %></td>
                                   <td>$<%= wallet.invested_money %></td>
                                   <td>$<%= wallet.profit %></td>
