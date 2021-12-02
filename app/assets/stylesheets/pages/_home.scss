@@ -75,3 +75,89 @@
 .login {
   margin-left: 10px;
 };
+
+.navbar .form-inline .search-field {
+  display: inline-block;
+  width: 80%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  color: #ccc;
+  box-shadow: none;
+  color: inherit;
+  transition: border-bottom-color 0.3s;
+}
+
+.navbar .form-inline .search-field:focus {
+  border-bottom: 1px solid #ccc;
+}
+
+.hero {
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (min-width:768px) {
+  .hero {
+    margin-top: 60px;
+    text-align: left;
+  }
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+@media (min-width:992px) {
+  .hero h1 {
+    margin-top: 110px;
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.phone-holder {
+  text-align: right;
+}
+
+div.phone-mockup {
+  position: relative;
+  max-width: 300px;
+  margin: 20px;
+  display: inline-block;
+  z-index: 1;
+}
+
+.phone-mockup img.device {
+  width: 350px;
+}
+
+.robot-logo {
+  color: white;
+}
+
+.image {
+  width: 100%;
+  border-radius: 20px;
+  opacity: 0.2;
+  ;
+}
+
+.login {
+  margin-left: 10px;
+}
+
+;
