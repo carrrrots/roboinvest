@@ -68,8 +68,9 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="card shadow mb-3">
-                                        <div class="card-header py-3">
-                                            <p class="text-primary m-0 font-weight-bold">Stock Info</p>
+                                        <div class="card-header py-3 d-flex justify-content-between ">
+                                            <p class="text-primary m-0 font-weight-bold "> Stock Info </p>
+                                            <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Add&nbsp;to Wallet</button></div>
                                         </div>
                                         <div class="card-body">
 
@@ -78,7 +79,7 @@
                                                         <div><strong>Symbol</strong></label><p> <%= @stock.symbol %> </p></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div><strong>Exchange</strong></label><p> <%= @stock.exchange %> </p></div>
+                                                        <div><strong>Primary Exchange</strong></label><p> <%= @stock.primary_exchange %> </p></div>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -87,58 +88,54 @@
                                                         <div><strong>Country</strong></label><p> <%= @stock.country %> </p></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div><strong>Sector</strong></label><p> <%= @stock.sector %> </p></div>
+                                                        <div><strong>Price Now</strong></label><p> <%= "R$#{@stock.price_now}" %> </p></div>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div><strong>Industry</strong></label><p> <%= @stock.industry %> </p></div>
+                                                        <div><strong>Day Range</strong></label><p> <%= "R$#{@stock.day_range_low} - R$#{@stock.day_range_high}" %> </p></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div><strong>Market Capitalization</strong></label><p> <%= @stock.market_capitalization %> </p></div>
+                                                        <div><strong>Year Range</strong></label><p> <%= "R$#{@stock.year_range_low} - R$#{@stock.year_range_high}" %> </p></div>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div><strong>Book Value</strong></label><p> <%= @stock.bookvalue %> </p></div>
+                                                        <div><strong>Market Cap</strong></label><p> <%= @stock.market_cap %> </p></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div><strong>Dividend Per Share</strong></label><p> <%= @stock.dividend_per_share %> </p></div>
+                                                        <div><strong>Volume</strong></label><p> <%= @stock.volume %> </p></div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div><strong>P/E Ratio</strong></label><p> <%= @stock.pe_ratio %> </p></div>
                                                     </div>
                                                     <div class="col">
                                                         <div><strong>Dividend Yield</strong></label><p> <%= @stock.dividend_yield %> </p></div>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="form-row">
-
-                                                    <div class="col">
-                                                        <div><strong>Profit Margin</strong></label><p> <%= @stock.profit_margin %> </p></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div><strong>Analyst Target Price</strong></label><p> <%= @stock.analyst_target_price %> </p></div>
                                                     </div>
                                                 </div>
                                         </div>
                                     </div>
                                     <div class="card shadow">
                                         <div class="card-header py-3">
-                                            <p class="text-primary m-0 font-weight-bold">Contact Settings</p>
+                                            <p class="text-primary m-0 font-weight-bold">Your Investment</p>
                                         </div>
                                         <div class="card-body">
                                             <form>
-                                                <div class="form-group"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address"></div>
+                                                <div class="form-group"><strong>Profit</strong></div>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city"></div>
+                                                        <div class="form-group"><strong>Loss</strong></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="form-group"><label for="country"><strong>Country</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="country"></div>
+                                                        <div class="form-group"><strong>Something else here</strong></div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Save&nbsp;Settings</button></div>
+
                                             </form>
                                         </div>
                                     </div>

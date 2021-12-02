@@ -15,36 +15,10 @@
   Wallet.create!(user: user3, money: 70000.00, invested_money: 40000.00, profit: 11000.00, name: "Getting Rich Project")
   Wallet.create!(user: user4, money: 5000.00, invested_money: 4000.00, profit: 900.00, name: "My first wallet")
 
-  Stock.new(symbol: 'IBM').save
-  Stock.new(symbol: 'AAPL').save
-  Stock.new(symbol: 'MSFT').save
-  Stock.new(symbol: 'GOOG').save
-  Stock.new(symbol: 'AMZN').save
+  Stock.new(symbol: 'VALE3').save
+  Stock.new(symbol: 'BBAS3').save
+  Stock.new(symbol: 'PETR3').save
+  Stock.new(symbol: 'CSNA3').save
+  Stock.new(symbol: 'BBDC4').save
   # puts "Waiting for timeout"
   # sleep(60)
-  Stock.new(symbol: 'TSLA').save
-  Stock.new(symbol: 'FB').save
-  Stock.new(symbol: 'NVDA').save
-  Stock.new(symbol: 'TSM').save
-  Stock.new(symbol: 'JPM').save
-  Stock.new(symbol: 'UNH').save
-  Stock.new(symbol: 'HD').save
-  Stock.new(symbol: 'JNJ').save
-  Stock.new(symbol: 'V').save
-  Stock.new(symbol: 'ADI').save
-  Stock.new(symbol: 'BAC').save
-  Stock.new(symbol: 'WMT').save
-  Stock.new(symbol: 'PG').save
-  Stock.new(symbol: 'ASML').save
-  Stock.new(symbol: 'BABA').save
-  Stock.new(symbol: 'ADBE').save
-  Stock.new(symbol: 'PFE').save
-  Stock.new(symbol: 'MA').save
-  Stock.new(symbol: 'NFLX').save
-  Stock.new(symbol: 'NKE').save
-  Stock.new(symbol: 'DIS').save
-  Stock.new(symbol: 'ORCL').save
-  Stock.new(symbol: 'PEP').save
-  Stock.new(symbol: 'QCOM').save
-  Stock.new(symbol: 'PYPL').save
-  Stock.new(symbol: 'VZ').save
