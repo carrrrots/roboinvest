@@ -7,9 +7,11 @@ before_action :set_stock, only: %i[show]
     @stocks = Stock.all
   end
 
-  def show; end
+  def show
+    @stock = Stock.find(params[:id])
+  end
 
-private
+  private
 
   def stock_params
     params.require(:stock).permit(:name, :symbol)

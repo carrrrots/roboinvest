@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_175954) do
+ActiveRecord::Schema.define(version: 2021_12_02_014040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,17 +20,19 @@ ActiveRecord::Schema.define(version: 2021_12_01_175954) do
     t.string "symbol"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "description"
-    t.string "exchange"
+    t.text "description"
+    t.float "previous_close"
     t.string "country"
-    t.string "sector"
-    t.string "industry"
-    t.integer "market_capitalization"
-    t.decimal "bookvalue"
-    t.decimal "dividend_per_share"
-    t.decimal "dividend_yield"
-    t.decimal "profit_margin"
-    t.decimal "analyst_target_price"
+    t.float "day_range_low"
+    t.float "day_range_high"
+    t.float "year_range_low"
+    t.float "year_range_high"
+    t.string "market_cap"
+    t.string "volume"
+    t.float "pe_ratio"
+    t.string "dividend_yield"
+    t.string "primary_exchange"
+    t.float "price_now"
   end
 
   create_table "users", force: :cascade do |t|
