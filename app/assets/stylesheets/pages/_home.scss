@@ -94,13 +94,13 @@
 }
 
 .hero {
-  margin-top: 20px;
+  padding-top: 20px;
   text-align: center;
 }
 
 @media (min-width:768px) {
   .hero {
-    margin-top: 60px;
+    padding-top: 150px;
     text-align: left;
   }
 }
@@ -160,4 +160,19 @@ div.phone-mockup {
   margin-left: 10px;
 }
 
-;
+.action-button,
+.action-button:not(.disabled):active {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 40px;
+  color: #ebeff1;
+  box-shadow: none;
+  text-shadow: none;
+  padding: .3rem .8rem;
+  background: transparent;
+  transition: background-color 0.25s;
+  outline: none;
+}
+
+.action-button:hover {
+  color: #fff;
+}
