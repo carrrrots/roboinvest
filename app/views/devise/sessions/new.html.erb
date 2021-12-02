@@ -1,5 +1,7 @@
-<h2>Log in</h2>
+<div class="login-container">
 
+<<h2>Log in</h2>
+<div>
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
     <%= f.input :email,
@@ -16,7 +18,8 @@
     <%= f.button :submit, "Log in" %>
   </div>
 <% end %>
-
+</div>
+<!--
 <%= render "devise/shared/links" %>
 <body class="bg-gradient-primary">
     <div class="container">
@@ -55,3 +58,4 @@
         </div>
     </div>
 </body>
+-->
