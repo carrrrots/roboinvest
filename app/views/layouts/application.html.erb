@@ -21,13 +21,15 @@
 
   <body>
     <% if current_page?(root_path) %>
+      <%= render "shared/navbar_home" %>
       <%= yield %>
       <%= render "shared/footer" %>
     <% elsif current_page?(new_user_session_path) %>
-      <!--<%= render "shared/navbar_home" %> NAVBAR LANDING, LOGIN SIGN IN-->
+      <%= render "shared/navbar_home" %>
       <%= yield %>
       <%= render "shared/footer" %>
     <% elsif current_page?(new_user_registration_path) %>
+      <%= render "shared/navbar_home" %>
       <%= yield %>
       <%= render "shared/footer" %>
     <% else %>
