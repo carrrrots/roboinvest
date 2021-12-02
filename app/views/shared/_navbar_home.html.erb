@@ -1,0 +1,9 @@
+<nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+  <div class="container-fluid"><a class="navbar-brand" href="#"><i class="fas fa-dice-d20 fa-lg"></i></a>RoboInvest<button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navcol-1">
+        <form class="form-inline mr-auto ml-4" target="_self">
+            <div class="form-group mb-0 "><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
+        </form><span class="navbar-text"><%= link_to "Login", new_user_session_path, class: "login" %></span><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-light action-button sign-up" %>
+    </div>
+  </div>
+</nav>
