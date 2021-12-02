@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   get "dashboard", to: "pages#dashboard", as: :dashboard
   resources :stocks
   resources :wallets
+  get "filter_wallets_search", to: "wallets#filter_wallets"
+  get "filter_wallets_search/:name", to: "wallets#filter_wallets"
+  get "filter_wallets_select/:limit", to: "wallets#filter_wallets"
 end
