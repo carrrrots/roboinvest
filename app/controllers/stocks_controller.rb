@@ -11,6 +11,17 @@ before_action :set_stock, only: %i[show]
     @stock = Stock.find(params[:id])
   end
 
+  def search
+
+    @stock = Stock.where(symbol: params[:query].upcase).first
+    if @stock
+      redirect_to @stock
+    else
+      redirect_to request.referer, notice: "Stock not found!"
+    end
+  end
+
+
   private
 
   def stock_params
