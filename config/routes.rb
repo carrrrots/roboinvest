@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   get "dashboard", to: "pages#dashboard", as: :dashboard
   get "about", to: "pages#about", as: :about
   resources :stocks
+  get "search", to: "stocks#search", as: :search
+  resources :wallets, shallow: true do
+    resources :wallet_stocks
+  end
+
+  resources :wallet_stocks, only: :delete
   resources :wallets
   get "filter_wallets_search", to: "wallets#filter_wallets"
   get "filter_wallets_search/:name", to: "wallets#filter_wallets"

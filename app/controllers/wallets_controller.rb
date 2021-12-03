@@ -21,6 +21,8 @@ class WalletsController < ApplicationController
   end
 
   def show
+    @wallet = Wallet.find(params[:id])
+    @wallet_stock = WalletStock.new
   end
 
 private
