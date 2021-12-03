@@ -3,6 +3,7 @@ require 'nokogiri'
 
 class Stock < ApplicationRecord
   before_save :get_data_from_scraping
+  belongs_to :wallet
 
 
   private

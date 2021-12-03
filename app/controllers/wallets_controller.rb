@@ -5,6 +5,21 @@ class WalletsController < ApplicationController
     @wallets = Wallet.all
   end
 
+  def filter_wallets
+    p params
+    @wallets = Wallet.all
+    if params[:name].present?
+      sql_name = "name ILIKE :name"
+      @wallets = Wallet.where(sql_name, name: "%#{params[:name]}%")
+    end
+    if params[:limit].present?
+      @wallets= Wallet.limit(params[:limit])
+    end
+    respond_to do |format|
+      format.json { render json: @wallets}
+    end
+  end
+
   def show
     @wallet = Wallet.find(params[:id])
     @wallet_stock = WalletStock.new

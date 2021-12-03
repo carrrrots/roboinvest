@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_012818) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_012818) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "img_url"
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
