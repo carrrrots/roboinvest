@@ -1,6 +1,5 @@
 
 .login-container {
-  background: linear-gradient(135deg, #1C1427, #7ECA9C);
   padding-bottom: 80px;
   padding-top: 80px;
   font-family: 'Roboto', sans-serif;
@@ -8,15 +7,28 @@
 }
 
 .form-container {
-  width: 25rem;
+  background: linear-gradient(#282d32, #282d3263);
+  opacity: 0.8;
+  width: 20rem;
   height: 27rem;
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
 .login-heading {
   font-family: 'Roboto', sans-serif;
-  color: white;
-  font-weight: 300;
+  color: rgba(255, 255, 255, 0.753);
+  font-weight: bold;
+}
+
+.form-inputs {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(255, 255, 255, 0.966);
+}
+
+input.btn {
+  color: black;
+  // font-weight: bold;
+  font-family: 'poppins', sans-serif;
 }
 
 //NAVBAR HOME LOGIN E SIGN IN
@@ -47,10 +59,6 @@
   color: #f0f0f0;
 }
 
- .navbar .navbar-collapse {
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  margin-top: .5rem;
-}
 
 @media (min-width:768px) {
    .navbar .navbar-collapse {

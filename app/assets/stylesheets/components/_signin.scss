@@ -3,19 +3,33 @@
   padding-bottom: 80px;
   padding-top: 80px;
   font-family: 'Roboto', sans-serif;
-  color: rgba(255, 255, 255, 0.719);
+  color: rgba(255, 255, 255, 0.541);
 }
 
 .heading-container {
+  background: linear-gradient(#282d32, #282d3263);
+  opacity: 0.8;
   width: 25rem;
   height: 32rem;
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
 .signup-heading {
   font-family: 'Roboto', sans-serif;
-  color: white;
-  font-weight: 300;
+  color: rgba(255, 255, 255, 0.89);
+  font-weight: bold;
 }
+
+.form-inputs {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(255, 255, 255, 0.966);
+}
+
+input.btn {
+  color: black;
+  // font-weight: bold;
+  font-family: 'poppins', sans-serif;
+}
+
 
 //NAVBAR AT LOGIN
