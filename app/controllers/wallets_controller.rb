@@ -1,4 +1,5 @@
 class WalletsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_wallet, only: %i[show]
 
   def index
@@ -21,6 +22,8 @@ class WalletsController < ApplicationController
   end
 
   def show
+    @wallet = Wallet.find(params[:id])
+    @wallet_stock = WalletStock.new
   end
 
 private

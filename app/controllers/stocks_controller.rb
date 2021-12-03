@@ -1,5 +1,4 @@
 require 'open-uri'
-
 class StocksController < ApplicationController
 before_action :set_stock, only: %i[show]
 
@@ -7,9 +6,22 @@ before_action :set_stock, only: %i[show]
     @stocks = Stock.all
   end
 
-  def show; end
+  def show
+    @stock = Stock.find(params[:id])
+  end
 
-private
+  def search
+
+    @stock = Stock.where(symbol: params[:query].upcase).first
+    if @stock
+      redirect_to @stock
+    else
+      redirect_to request.referer, notice: "Stock not found!"
+    end
+  end
+
+
+  private
 
   def stock_params
     params.require(:stock).permit(:name, :symbol)

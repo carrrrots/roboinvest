@@ -20,6 +20,7 @@
   </head>
 
   <body>
+    <%= render 'shared/flashes' %>
     <% if current_page?(root_path) %>
       <%= render "shared/navbar_home" %>
       <%= yield %>
@@ -38,6 +39,9 @@
         <%= render "shared/navbar" %>
         <%= yield %>
       </div>
+    <% elsif current_page?(about_path) %>
+      <%= render "shared/navbar_home" %>
+      <%= yield %>
       <%= render "shared/footer" %>
     <% else %>
       <div class=" d-flex w-100 ">
