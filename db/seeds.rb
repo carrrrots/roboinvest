@@ -28,7 +28,7 @@
   ]
   stock_symbols.each do |symbol|
     puts symbol
-    sleep(1)
+    sleep(3)
     Stock.new(symbol: symbol).save
   end
   # puts "Waiting for timeout"
