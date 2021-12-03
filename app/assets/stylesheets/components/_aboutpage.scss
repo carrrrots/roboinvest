@@ -26,13 +26,23 @@
   width: 90%;
   height: 500px;
   align-self: center;
+  position: relative;
 }
-.bg-faded {
+.card-about-company {
     border-radius: 0.25rem!important;
     background-color: hsla(0,0%,100%,.70);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-self: center;
+    width: 60rem;
+}
+.card-about-team {
+    border-radius: 0.25rem!important;
+    background-color: hsla(0,0%,100%,.70);
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 80rem;
 }
 .img-about-page {
   width: 100px;
@@ -42,12 +52,14 @@
 .item-people {
   border-style: solid;
   width: 150px;
+  margin: 20px;
 }
 .perfil-junto {
   display: flex;
-  justify-content: space-evenly;
   font-size: 0.8rem;
+  justify-content: space-between;
 }
+
 .name-about-page {
   font-size: 1rem;
 }
