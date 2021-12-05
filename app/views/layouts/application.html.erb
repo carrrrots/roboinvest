@@ -38,8 +38,12 @@
       <%= yield %>
       <%= render "shared/footer" %>
     <% elsif current_page?(wallets_path) %>
-      <%= render "shared/navbar_home" %>
-      <div class="sidebar-place mb-5">
+      <div class="sidebar-place">
+        <%= render "shared/navbar" %>
+        <%= yield %>
+      </div>
+    <% elsif current_page?(wallet_path) %>
+      <div class="sidebar-place">
         <%= render "shared/navbar" %>
         <%= yield %>
       </div>
@@ -48,8 +52,8 @@
       <%= render "shared/footer" %>
     <% else %>
       <div class=" d-flex w-100 ">
-      <%= render "shared/navbar" %>
-      <%= yield %>
+        <%= render "shared/navbar" %>
+        <%= yield %>
       </div>
       <%= render "shared/footer" %>
     <% end %>
