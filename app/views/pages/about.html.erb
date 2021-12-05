@@ -1,36 +1,65 @@
 <body style="background:linear-gradient(135deg, #1C1427, #7ECA9C);">
+  <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search w-100" id="navbarhome">
+    <div class="container-fluid">
+      <div class=" d-inline-flex">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <i class="fas fa-dice-d20 fa-2x"><h2>RoboInvest</h2></i>
+        <% end %>
+        </div>
+      </div>
+      <div>
+        <span class="navbar-text">
+        <%= link_to "Back", :back, class: "btn btn-light action-button sign-up" %>
+      </div
+    </div>
+  </nav>
+
   <div class="site-heading all-content d-flex flex-column"
       <h1>
         <span class="text-primary site-heading-upper text-center mb-3">An easy way to start investing your money</span>
         <span class="site-heading-lower text-center text-white">roboinvest</span>
       </h1>
-      <img class="rounded about-heading-img mb-3 mb-lg-0" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80">
-      <div class="card-about-company rounded p-5 m-5">
+      <img class="rounded about-heading-img" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80">
+      <div class="card-about-company rounded p-5">
           <h2 class="section-heading mb-4">
-            <span class="section-heading-lower">&nbsp;About Our company</span>
+            <span class="section-heading-lower text-primary">&nbsp;About Our company</span>
           </h2>
           <p>RoboInvest is a website specialized in markets, investments and business in Brazil.&nbsp;Our goal is to provide quality content to help people make better financial decisions.&nbsp;This is what guides the production of reports and analyses.</p>
           <p>We guarantee that after venturing to our site, you will break paradigms that investing is only for intellectuals and rich people.</p>
           <p>Sign up and discover our platform !!</p>
       </div>
-      <div class="card-about-team rounded p-5 m-5">
+      <div class="card-about-team rounded p-5">
           <h2 class="section-heading mb-4">
-            <span class="section-heading-lower">&nbsp;About Our team</span>
+            <span class="section-heading-lower text-primary">&nbsp;About Our team</span>
           </h2>
-          <p> Estudantes le wagon batch 766 blablabla Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the best coffee, and bringing back to you here in our cafe.</p>
+          <p> Students at Le Wagon do Batch#766. We are from different regions of Brazil, but with a common interest: </p>
+          <p>simplifying the concept of investing, making it accessible and easy to compress for everyone, regardless of their area of ​​expertise. </p>
           <div class="people d-flex justify-content-between">
               <div class="perfil-junto mt-5">
                 <div class="col-sm-6 col-lg-4 item-people">
                     <img class="img-about-page ml-5 my-3" src="https://png.vector.me/files/images/6/9/697797/acid_smiley_face_vector_free.png">
                     <div>
-                      <h3 class="name-about-page">Ben Johnson</h3>
+                      <h3 class="name-about-page">Rodrigo Vaz</h3>
                       <p class="title-about-page">Musician</p>
                       <p class="description-about-page">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id. Etiam dictum feugiat tellus, a semper massa. </p>
                     </div>
                     <div class="social text-center">
-                      <a href="#"><i class="fab fa-linkedin"></i></a>
-                      <a href="#"><i class="fab fa-github"></i></a>
-                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-linkedin social-team"></i></a>
+                      <a href="#"><i class="fab fa-github social-team"></i></a>
+                      <a href="#"><i class="fab fa-instagram social-team"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 item-people">
+                    <img class="img-about-page ml-5 my-3" src="https://png.vector.me/files/images/6/9/697797/acid_smiley_face_vector_free.png" alt="imagem da alyssa">
+                    <div>
+                      <h3 class="name-about-page">Alyssa Giacomini</h3>
+                      <p class="title-about-page">Mechanical Engineering</p>
+                      <p class="description-about-page">Recently graduated in Mechanical Engineering, I am looking for an immersion in programming through Le Wagon, to work as a developer in the near future. </p>
+                    </div>
+                    <div class="social text-center">
+                      <a href="https://www.linkedin.com/in/alyssa-coelho-68517014a/"><i class="fab fa-linkedin social-team"></i></a>
+                      <a href="https://github.com/alyssagc"><i class="fab fa-github social-team"></i></a>
+                      <a href="https://www.instagram.com/alyssagc/"><i class="fab fa-instagram social-team"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 item-people">
@@ -41,9 +70,9 @@
                       <p class="description-about-page">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id. Etiam dictum feugiat tellus, a semper massa. </p>
                     </div>
                     <div class="social text-center">
-                      <a href="#"><i class="fab fa-linkedin"></i></a>
-                      <a href="#"><i class="fab fa-github"></i></a>
-                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-linkedin social-team"></i></a>
+                      <a href="#"><i class="fab fa-github social-team"></i></a>
+                      <a href="#"><i class="fab fa-instagram social-team"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 item-people">
@@ -54,22 +83,9 @@
                       <p class="description-about-page">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id. Etiam dictum feugiat tellus, a semper massa. </p>
                     </div>
                     <div class="social text-center">
-                      <a href="#"><i class="fab fa-linkedin"></i></a>
-                      <a href="#"><i class="fab fa-github"></i></a>
-                      <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 item-people">
-                    <img class="img-about-page ml-5 my-3" src="https://png.vector.me/files/images/6/9/697797/acid_smiley_face_vector_free.png">
-                    <div>
-                      <h3 class="name-about-page">Ben Johnson</h3>
-                      <p class="title-about-page">Musician</p>
-                      <p class="description-about-page">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id. Etiam dictum feugiat tellus, a semper massa. </p>
-                    </div>
-                    <div class="social text-center">
-                      <a href="#"><i class="fab fa-linkedin"></i></a>
-                      <a href="#"><i class="fab fa-github"></i></a>
-                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-linkedin social-team"></i></a>
+                      <a href="#"><i class="fab fa-github social-team"></i></a>
+                      <a href="#"><i class="fab fa-instagram social-team"></i></a>
                     </div>
                 </div>
               </div>
