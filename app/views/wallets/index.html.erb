@@ -6,22 +6,22 @@
 
 
             <!--COLOCAR SAMPLE DE ALGUMAS STOCKS DO USER-->
-            <div class="stocks-sample d-flex justify-content-center">
-              <div class="card-deck w-75 mb-4">
-                <div class="card card-img">
-                  <img class="card-img-top" src="https://comoinvestir.thecap.com.br/wp-content/uploads/2020/02/analise-resultado-vale-VALE3-4t19-historico-lucro.png" alt="Card image cap">
+            <div class="stocks-sample d-flex">
+              <div class="card-deck w-100 mb-4 d-flex justify-content-between">
+                <div class="graph-card card card-img">
+                  <img class="card-img-top" src="https://i.stack.imgur.com/434jg.png" alt="Card image cap">
                 <div class="card-footer d-flex justify-content-center">
                   <small class="text-muted">VALE3</small>
                 </div>
                 </div>
-                <div class="card card-img">
-                  <img class="card-img-top" src="https://comoinvestir.thecap.com.br/wp-content/uploads/2020/02/analise-resultado-vale-VALE3-4t19-historico-lucro.png" alt="Card image cap">
+                <div class="graph-card card card-img">
+                  <img class="card-img-top" src="https://i.stack.imgur.com/434jg.png" alt="Card image cap">
                 <div class="card-footer d-flex justify-content-center">
                   <small class="text-muted">BIDI4</small>
                 </div>
                 </div>
-                <div class="card card-img">
-                  <img class="card-img-top" src="https://comoinvestir.thecap.com.br/wp-content/uploads/2020/02/analise-resultado-vale-VALE3-4t19-historico-lucro.png" alt="Card image cap">
+                <div class="graph-card card card-img">
+                  <img class="card-img-top" src="https://i.stack.imgur.com/434jg.png" alt="Card image cap">
                 <div class="card-footer d-flex justify-content-center">
                   <small class="text-muted ">ABEV3</small>
                 </div>
@@ -30,20 +30,19 @@
             </div>
 
             <div class="wallet-card card shadow">
-                <div class="wallet-title card-header py-3">
-                    <p class=" m-0 "> My Wallets <i class="fas fa-wallet"></i> </p>
+                <div class="wallet-title card-header py-4 mb-2">
+                    <p class=" m-0 "> My Wallets<i class="fas fa-wallet ml-4"></i> </p>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row search-row">
                         <div class="col-lg-5  text-nowrap">
                             <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                              <label>Show&nbsp;
+                              <label>&nbsp;
                                     <select class="form-control form-control-sm custom-select custom-select-sm" id="walletfilterselect">
                                         <option value="100" selected=""> Filtro </option>
                                         <option value="5">5</option>
                                         <option value="10">10</option>
                                         <option value="20">20</option>
-                                        <option value="50">50</option>
                                     </select>&nbsp;</label>
                             </div>
                         </div>
@@ -53,25 +52,25 @@
 
                         </div>
                     </div>
-                    <div class="table-responsive table mt-2 " id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <div class="table-responsive table mt-3 " id="dataTable" role="grid" aria-describedby="dataTable_info">
                         <table class="table my-0" id="dataTable">
                             <thead>
                                 <tr class="column-title text-lg-center">
                                     <th id="column-title">Name</th>
-                                    <th id="column-title">Money <i class="fas fa-coins"></i></th>
+                                    <th id="column-title">Money <i class="fas fa-coins ml-2"></i></th>
                                     <th id="column-title">Invested Money</th>
-                                    <th id="column-title">Profit <i class="fas fa-chart-line"></i></th>
-                                    <th id="column-title">Creation Date <i class="far fa-calendar-alt"></i></th>
+                                    <th id="column-title">Profit <i class="fas fa-chart-line ml-2"></i></th>
+                                    <th id="column-title">Creation Date <i class="far fa-calendar-alt ml-2"></i></th>
                                 </tr>
                             </thead>
                             <tbody id="wallet-table">
                               <% @wallets.each do |wallet| %>
                                 <tr class="text-lg-center">
                                   <td class="text-left"><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
-                                  <td>$<%= wallet.money %></td>
-                                  <td>$<%= wallet.invested_money %></td>
-                                  <td>$<%= wallet.profit %></td>
-                                  <td><%= wallet.created_at %></td>
+                                  <td class="table-info">$<%= wallet.money %></td>
+                                  <td class="table-info">$<%= wallet.invested_money %></td>
+                                  <td class="table-info">$<%= wallet.profit %></td>
+                                  <td class="table-info"><%= wallet.created_at %></td>
                                 </tr>
                               <%end%>
                             </tbody>

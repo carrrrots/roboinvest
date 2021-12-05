@@ -5,16 +5,37 @@ body {
 .wallet-container {
   border-radius: 2px;
   margin-top: 100px;
-  width: 75%;
+  width: 70%;
+  position: relative;
 }
 
 .wallet-card {
-  background-color: #282d32ad;
-
+  background-color: #282d320c;
+  border-color: transparent;
 }
 
 .wallet-title {
   color: white;
+  text-align: center;
+  background-color: #282d32af;
+  border-radius: 3px;
+  width: 100%;
+  position:absolute;
+}
+
+.text-muted {
+  font-weight: bold;
+  color: black;
+}
+
+.graph-card {
+  background-color: rgba(255, 255, 255, 0.753);
+
+}
+
+.stocks-sample {
+  width: 100%;
+  justify-content: center;
 }
 
 .card-img {
@@ -26,9 +47,50 @@ body {
   font-family: Roboto, sans-serif;
   font-size: 50px;
   color:white;
+  font-weight: lighter;
 }
 
 #column-title {
   color:white;
   font-weight: lighter;
+  border-color: transparent;
+}
+
+thead {
+  background-color: #282d3200;
+  font-family: Roboto, sans-serif;
+}
+
+.text-left {
+  background-color: #282d32d5;
+  border-radius: 3px;
+  font-family: Roboto, sans-serif;
+}
+
+.table-info {
+  background-color: #ffffffa9;
+  border-radius: 3px;
+   font-family: Roboto,
+   sans-serif;
+}
+
+.search-row {
+  align-items: center;
+  justify-content: space-around;
+}
+
+#walletfilterselect {
+  background-color: rgba(255, 255, 255, 0.671);
+  border-radius: 10px;
+    width: 130px;
+}
+
+#walletfiltersearch {
+   background-color: rgba(255, 255, 255, 0.753);
+   border-radius: 10px;
+   width: 130px;
+}
+
+.table-responsive {
+  border-color: transparent;
 }
