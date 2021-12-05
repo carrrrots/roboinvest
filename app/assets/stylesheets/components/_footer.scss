@@ -67,8 +67,11 @@
   margin-left: 40px;
 }
 
-.footer-dark .item.social>a:hover {
+.item.social {
+  a:hover {
   opacity: 0.9;
+  background-color: #7eca7e;
+  }
 }
 
 .footer-dark .copyright {
