@@ -21,7 +21,9 @@ class Stock < ApplicationRecord
     self.country = 'Brazil'
     self.price_now = html_doc.css('.YMlKec').css('.fxKbKc').text.strip.scan(REGEXG)[0].join.to_f
     self.previous_close = html_doc.css('.P6K39c')[0].text.strip.scan(REGEXG)[0].join.to_f
-    self.array_stock = Array.new(15) { 0 } if array_stock.length < 15
+    # self.array_stock = Array.new(16) { 0 } if array_stock.length < 16
+    self.array_stock = [65.69, 68.01, 68.30, 66.33, 65.00, 62.33, 67.59, 69.37,
+                        70.98, 70.50, 68.64, 69.50, 69.95, 70.23, 73.49, 71.87]
     if DateTime.now.new_offset("-03:00").hour == 18
       array_stock.push(previous_close)
       array_stock.shift
