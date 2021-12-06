@@ -18,7 +18,10 @@
             <div class="row mb-3 mt-5">
                 <div class="col-lg-4 d-flex flex-column justify-content-between">
                     <div class="card mb-3">
-                        <div class="card-body text-center shadow"> <%= @stock.description %> </div>
+                      <div class="card-header card-header-stock py-3">
+                        <h6 class="text-primary font-weight-bold m-0">Description</h6>
+                      </div>
+                      <div class="card-body card-body-stock text-center shadow"> <%= @stock.description %> </div>
                     </div>
                     <div class="card shadow">
                         <div class="card-header card-header-stock py-3">
