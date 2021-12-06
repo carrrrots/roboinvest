@@ -34,7 +34,7 @@ th {
 }
 
 .table-title {
-  background-color: #282d32d0;
+  background-color: #282d32af;
 }
 
 .balance-card {
@@ -69,4 +69,11 @@ th {
    font-weight: bold;
    font-size: 15px;
 
+}
+
+#stock-symbol {
+  background-color: rgb(99, 7, 7);
+  width: 10%;
+  text-align: center;
+  color: white;
 }

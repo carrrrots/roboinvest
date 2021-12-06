@@ -20,9 +20,9 @@
 
         <div class="d-none d-sm-block topbar-divider"></div>
         <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
-            data-toggle="dropdown" href="#"><span
-              class="d-none d-lg-inline mr-2 text-gray-600 small">@current.user</span><img
-              class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+             data-toggle="dropdown" href="#"><span
+             class="d-none d-lg-inline mr-2 text-gray-600 small">@current.user</span><img
+             class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
         </div>
       </div>
     </nav>
@@ -37,17 +37,17 @@
             <table class="whole-table table" id="dataTable">
               <thead>
                 <tr class="table-title">
-                  <th class="stock-table-header">Date of Purchase</th>
-                  <th class="stock-table-header">Batch</th>
-                  <th class="stock-table-header">Stock</th>
-                  <th class="stock-table-header">Price per stock</th>
-                  <th class="stock-table-header">Batch Cost</th>
-                  <th class="stock-table-header">Price to Overcome</th>
-                  <th class="stock-table-header">Year Range</th>
+                  <%# <th class="stock-table-header">Date of Purchase</th> %>
+                  <%# <th class="stock-table-header">Batch</th> %>
+                  <th class="stock-table-header" >Stock</th>
+                  <%# <th class="stock-table-header">Price per stock</th> %>
+                  <%# <th class="stock-table-header">Batch Cost</th> %>
+                  <%# <th class="stock-table-header">Price to Overcome</th> %>
+                  <%# <th class="stock-table-header">Year Range</th> %>
                   <th class="stock-table-header">Price Now</th>
                   <th class="stock-table-header">Average</@wallet_stocktion</th>
-                  <th class="stock-table-header">Balance</th>
-                  <th class="stock-table-header">Profit</th>
+                  <%# <th class="stock-table-header">Balance</th> %>
+                  <%# <th class="stock-table-header">Profit</th> %>
                   <th class="stock-table-header">Status</th>
                   <th class="stock-table-header"></th>
                 </tr>
@@ -55,13 +55,13 @@
               <tbody class="balance-body">
                 <% @wallet.wallet_stocks.each do |wallet_stock| %>
                 <tr>
-                  <td class="stock-infos"> <%= wallet_stock.date %> </td>
-                  <td class="stock-infos"><%= wallet_stock.number_of_stock %> </td>
-                  <td class="stock-infos"><%= wallet_stock.stock.symbol %> </td>
-                  <td class="stock-infos"><%= wallet_stock.investment_stock %> </td>
-                  <% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>
-                  <% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>
-                  <td class="stock-infos"><%= batch.round(2) %> </td>
+                  <!--<td class="stock-infos"> <%= wallet_stock.date %> </td>-->
+                  <!--<td class="stock-infos"><%= wallet_stock.number_of_stock %> </td>-->
+                  <td class="stock-infos" id="stock-symbol"><%= wallet_stock.stock.symbol %> </td>
+                  <!--<td class="stock-infos"><%= wallet_stock.investment_stock %> </td>-->
+                  <!--<% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>-->
+                  <!--<% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>-->
+                  <!--<td class="stock-infos"><%= batch.round(2) %> </td>
                   <td class="stock-infos"><%= (batch/wallet_stock.number_of_stock).round(2) %> </td>
                   <td class="stock-infos">
                     <div class="d-flex flex-column">
@@ -69,15 +69,15 @@
                       <% average = (wallet_stock.stock.year_range_high + wallet_stock.stock.year_range_low)/2 %>
                       <p><%= average.round(2) %></p>
                       <p><%= wallet_stock.stock.year_range_low %></p>
-                    </div>
+                    </div>-->
                   </td class="stock-infos">
                   <td class="stock-infos"><%= wallet_stock.stock.price_now %> </td>
                   <td class="stock-infos"><%= wallet_stock.stock.price_now <= (average) + 2/100 ? 'Cheap' : 'Expensive' %> </td>
                   <% price_total = (wallet_stock.stock.price_now*wallet_stock.number_of_stock) %>
                   <% balance = price_total - ((price_total*0.0325/100)+2.49) %>
-                  <td class="stock-infos"><%= wallet_stock.number_of_stock != 0 ? (((balance/batch) - 1)*100).round(2)  : 0 %>%</td>
-                  <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? balance.round(2) : 0 %> </td>
-                  <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? (balance-batch).round(2) : 0 %> </td>
+                  <!--<td class="stock-infos"><%= wallet_stock.number_of_stock != 0 ? (((balance/batch) - 1)*100).round(2)  : 0 %>%</td>-->
+                  <!--<td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? balance.round(2) : 0 %> </td>
+                  <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? (balance-batch).round(2) : 0 %> </td>-->
                   <td class="stock-infos">
                     <%= link_to 'x', wallet_stock, method: :delete, data: { confirm: 'Are you sure?' }, class: "destroy-btn btn btn-danger shadow" %>
                   </td>
@@ -95,8 +95,8 @@
       </div>
 
 
-      <div class="card shadow mt-3">
-        <div class="card-header py-3">
+      <div class="balance-body card shadow mt-3">
+        <div class="table-title card-header py-3">
           <p class="text-primary m-0 font-weight-bold">Your Investment</p>
         </div>
         <div class="card-body">
