@@ -2,7 +2,7 @@
 <div>
     <div class='wallet-container' id="content">
         <div class="container-fluid bg-transparent col-md">
-          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Welcome, @RodrigoMaster</div>
+          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Welcome</div>
 
 
             <!--COLOCAR SAMPLE DE ALGUMAS STOCKS DO USER-->
@@ -56,7 +56,6 @@
                             <thead>
                                 <tr class="column-title text-lg-center">
                                     <th id="column-title">Name</th>
-                                    <th id="column-title">Money <i class="fas fa-coins ml-2"></i></th>
                                     <th id="column-title">Invested Money</th>
                                     <th id="column-title">Profit <i class="fas fa-chart-line ml-2"></i></th>
                                     <th id="column-title">Creation Date <i class="far fa-calendar-alt ml-2"></i></th>
@@ -64,13 +63,24 @@
                             </thead>
                             <tbody id="wallet-table">
                               <% @wallets.each do |wallet| %>
-                                <tr class="text-lg-center">
-                                  <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
-                                  <td class="table-info">$<%= wallet.money %></td>
-                                  <td class="table-info">$<%= wallet.invested_money %></td>
-                                  <td class="table-info">$<%= wallet.profit %></td>
-                                  <td class="table-info"><%= wallet.created_at %></td>
-                                </tr>
+                                <% wallet.wallet_stocks.each do |wallet_stock| %>
+                                <% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>
+                                <% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>
+                                <% price_total = (wallet_stock.stock.price_now*wallet_stock.number_of_stock) %>
+                                <% balance = price_total - ((price_total*0.0325/100)+2.49) %>
+                                <% wallet.profit = wallet.profit + balance  %>
+                                <% wallet.invested_money = wallet.invested_money + batch %>
+                                <% end %>
+                                  <tr class="text-lg-center">
+                                    <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
+                                    <td class="table-info">
+                                      $<%= wallet.invested_money.round(2) %>
+                                    </td>
+                                    <td class="table-info">
+                                      $<%= wallet.profit.round(2) %>
+                                    </td>
+                                    <td class="table-info"><%= wallet.created_at %></td>
+                                  </tr>
                               <%end%>
                             </tbody>
                         </table>
