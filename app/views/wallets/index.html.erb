@@ -2,7 +2,7 @@
 <div>
     <div class='wallet-container' id="content">
         <div class="container-fluid bg-transparent col-md">
-          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Welcome, @RodrigoMaster </div>
+          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Welcome, @RodrigoMaster</div>
 
 
             <!--COLOCAR SAMPLE DE ALGUMAS STOCKS DO USER-->
@@ -65,7 +65,7 @@
                             <tbody id="wallet-table">
                               <% @wallets.each do |wallet| %>
                                 <tr class="text-lg-center">
-                                  <td class="text-left"><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
+                                  <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
                                   <td class="table-info">$<%= wallet.money %></td>
                                   <td class="table-info">$<%= wallet.invested_money %></td>
                                   <td class="table-info">$<%= wallet.profit %></td>
