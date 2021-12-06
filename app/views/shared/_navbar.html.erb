@@ -5,8 +5,14 @@
             <h3><i class="fas fa-dice-d20 fa-3x logo-dice mt-2 mb-2"></i>RoboInvest</h3>
         </div>
         <ul class="list-unstyled components">
-            <li class="active mb-4">
-              <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
+            <li class="mb-4">
+              <% if user_signed_in? %>
+                <%= link_to "Dashboard", dashboard_path%>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <% else %>
+                <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
+              <% end %>
+            </li>
             <li class="my-1">
                 <a href="/">Home</a>
             </li>
@@ -18,9 +24,6 @@
             </li>
             <li class="my-1">
                 <%= link_to "Back", :back%>
-            </li>
-           <li class="my-1">
-                <a href="#">Logout</a>
             </li>
         </ul>
     </nav>
