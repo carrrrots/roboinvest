@@ -3,16 +3,12 @@ require 'nokogiri'
 
 class Stock < ApplicationRecord
   before_save :get_data_from_scraping
-
-
-
-
+  before_save :get_previous_close_to_array
 
   REGEXG = /([0-9]*\.[0-9]+)/
   COUNTRY = /[a-zA-Z]+/
 
   def get_data_from_scraping
-    puts "Start Scraping"
     url = "https://www.google.com/finance/quote/#{self.symbol}:BVMF"
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)
@@ -20,14 +16,8 @@ class Stock < ApplicationRecord
     self.description = 'todo'
     self.country = 'Brazil'
     self.price_now = html_doc.css('.YMlKec').css('.fxKbKc').text.strip.scan(REGEXG)[0].join.to_f
-    p self.price_now
     self.previous_close = html_doc.css('.P6K39c')[0].text.strip.scan(REGEXG)[0].join.to_f
     self.array_stock = Array.new(16) { rand(20..70) } if array_stock.length < 16
-    if DateTime.now.new_offset("-03:00").hour == 18
-      array_stock.push(previous_close)
-      array_stock.shift
-    end
-
     if DateTime.now.new_offset("-03:00").hour < 11 || DateTime.now.new_offset("-03:00").hour > 17
 
       self.day_range_low = 0.00
@@ -53,6 +43,11 @@ class Stock < ApplicationRecord
       self.primary_exchange = html_doc.css('.P6K39c')[7].text.strip
 
     end
+  end
+
+  def get_previous_close_to_array
+    array_stock.push(previous_close)
+    array_stock.shift
   end
 
 end
