@@ -6,13 +6,13 @@ class Stock < ApplicationRecord
 
 
 
-  private
+
 
   REGEXG = /([0-9]*\.[0-9]+)/
   COUNTRY = /[a-zA-Z]+/
 
   def get_data_from_scraping
-
+    puts "Start Scraping"
     url = "https://www.google.com/finance/quote/#{self.symbol}:BVMF"
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)
@@ -20,10 +20,9 @@ class Stock < ApplicationRecord
     self.description = 'todo'
     self.country = 'Brazil'
     self.price_now = html_doc.css('.YMlKec').css('.fxKbKc').text.strip.scan(REGEXG)[0].join.to_f
+    p self.price_now
     self.previous_close = html_doc.css('.P6K39c')[0].text.strip.scan(REGEXG)[0].join.to_f
-    # self.array_stock = Array.new(16) { 0 } if array_stock.length < 16
-    self.array_stock = [65.69, 68.01, 68.30, 66.33, 65.00, 62.33, 67.59, 69.37,
-                        70.98, 70.50, 68.64, 69.50, 69.95, 70.23, 73.49, 71.87]
+    self.array_stock = Array.new(16) { rand(20..70) } if array_stock.length < 16
     if DateTime.now.new_offset("-03:00").hour == 18
       array_stock.push(previous_close)
       array_stock.shift
@@ -58,19 +57,21 @@ class Stock < ApplicationRecord
 
 end
 
+# self.array_stock = [65.69, 68.01, 68.30, 66.33, 65.00, 62.33, 67.59, 69.37,
+                   # 70.98, 70.50, 68.64, 69.50, 69.95, 70.23, 73.49, 71.87]
 # self.pe_ratio = html_doc.css('.P6K39c')[4].text.strip.scan(REGEXG)[0].join.to_f
 # self.country = html_doc.css('.tBHE4e')[2]['href'].scan(COUNTRY)[-4]
 # def get_data_from_api
-  # url = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=#{self.symbol}&apikey=#{ENV['ALPHA_API_KEY']}"
-  #  stock_serialized = URI.open(url).read
-  #  stock = JSON.parse(stock_serialized)
-  #  self.name = stock["Name"]
-  #  self.description = stock["Description"]
-  #  self.exchange = stock["Exchange"]
-  #  self.country = stock["Country"]
-  #  self.sector = stock["Sector"]
-  #  self.industry = stock["Industry"]
-  #  self.market_capitalization = stock["MarketCapitalization"]
+# url = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=#{self.symbol}&apikey=#{ENV['ALPHA_API_KEY']}"
+#  stock_serialized = URI.open(url).read
+#  stock = JSON.parse(stock_serialized)
+#  self.name = stock["Name"]
+#  self.description = stock["Description"]
+#  self.exchange = stock["Exchange"]
+#  self.country = stock["Country"]
+#  self.sector = stock["Sector"]
+#  self.industry = stock["Industry"]
+#  self.market_capitalization = stock["MarketCapitalization"]
   #  self.bookvalue = stock["BookValue"]
   #  self.dividend_per_share = stock["DividendPerShare"]
   #  self.dividend_yield = stock["DividendYield"]
