@@ -1,5 +1,6 @@
 .wallet-wrapper {
-  margin-top: 10rem;
+  margin-top: 8rem;
+  padding-left: 5rem;
 }
 
 .stock-search {
@@ -9,4 +10,64 @@
 #find-btn {
   margin-top: 1px;
   color: rgba(255, 255, 255, 0.87);
+}
+
+#content {
+  margin-top: 0px;
+  width: 90%;
+}
+
+
+.wallet-heading {
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  font-weight: lighter;
+  font-size: 40px;
+  margin-left: 15px;
+}
+
+th {
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  font-size: 12px;
+
+}
+
+.table-title {
+  background-color: #282d32d0;
+}
+
+.balance-card {
+  background-color: transparent;
+  border-style: none;
+}
+
+.balance-body {
+  background-color: rgba(255, 255, 255, 0.753);
+  width: 100px;
+}
+
+.destroy-btn {
+  border-radius: 50%;
+  height: 31px;
+  width: 30px;
+  padding: 1px;
+  background: rgb(212, 12, 12);
+}
+
+.stock-infos {
+  align-items: center;
+}
+
+.stock-table-header {
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-weight: lighter;
+}
+
+.stock-infos {
+   font-family: 'Nunito', sans-serif;
+   font-weight: bold;
+   font-size: 15px;
+
 }
