@@ -20,8 +20,7 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-import ApexCharts from "apexcharts";
-window.ApexCharts = ApexCharts;
+import "chartkick/chart.js";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
