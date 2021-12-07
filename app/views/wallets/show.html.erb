@@ -17,84 +17,95 @@
         <% end %>
         <div class="d-none d-sm-block topbar-divider"></div>
         <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
-              data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">@current.user</span><img
+              data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"> <%= current_user.nickname %> </span><img
               class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
         </div>
       </div>
     </nav>
 
-      <!--WALLET INIT-->
-        <div class="wallet-wrapper container-fluid">
-          <h3 class="wallet-heading mb-4"> <%= @wallet.name %> </h3>
-            <div class="balance-card card">
-                <div class="card-body">
-                  <div class="table-responsive table my-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                    <table class="whole-table table" id="dataTable">
-                      <thead>
-                        <tr class="table-title">
-                          <th class="stock-table-header">Date of Purchase</th>
-                          <th class="stock-table-header">Number of Stocks</th>
-                          <th class="stock-table-header">Symbol</th>
-                          <th class="stock-table-header">Paid</th>
-                          <th class="stock-table-header">Batch Cost</th>
-                          <th class="stock-table-header">Price to Overcome</th>
-                          <th class="stock-table-header">Year Range</th>
-                          <th class="stock-table-header"  id="stock-price">Price Now</th>
-                          <th class="stock-table-header">Average</@wallet_stocktion</th>
-                          <th class="stock-table-header">Balance</th>
-                          <th class="stock-table-header">Profit</th>
-                          <th class="stock-table-header">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody class="balance-body">
-                        <% @wallet.wallet_stocks.each do |wallet_stock| %>
-                          <tr id="stock-row">
-                                    <%  stock_res = calculate(wallet_stock.stock) %>
-                                    <td class="stock-infos"> <%= wallet_stock.date %> </td>
-                                    <td class="stock-infos"><%= wallet_stock.number_of_stock %> </td>
-                                    <td  class="stock-infos" id="stock-symbol"><i class="arrow-up fas fa-angle-double-up"></i><%= wallet_stock.stock.symbol %> </td>
-                                    <td class="stock-infos"><%= wallet_stock.investment_stock %> </td>
-                                    <% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>
-                                    <% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>
-                                    <td class="stock-infos"><%= batch.round(2) %> </td>
-                                    <td class="stock-infos"><%= (batch/wallet_stock.number_of_stock).round(2) %> </td>
-                                    <td class="stock-infos">
-                                      <div class="d-flex flex-column">
-                                        <p><%= wallet_stock.stock.year_range_high %></p>
-                                        <% average_year = (wallet_stock.stock.year_range_high + wallet_stock.stock.year_range_low)/2 %>
-                                        <p><%= average_year.round(2) %></p>
-                                        <p><%= wallet_stock.stock.year_range_low %></p>
-                                      </div>
-                                    </td>
-                                    <td class="stock-infos" id="stock-price">><%= wallet_stock.stock.price_now %> </td>
-                                    <td class="stock-infos"><%= wallet_stock.stock.price_now <= (average_year) + 2/100 ? 'Cheap' : 'Expensive' %> </td>
-                                    <% price_total = (wallet_stock.stock.price_now*wallet_stock.number_of_stock) %>
-                                    <% balance = price_total - ((price_total*0.0325/100)+2.49) %>
-                                    <td class="stock-infos"><%= wallet_stock.number_of_stock != 0 ? (((balance/batch) - 1)*100).round(2)  : 0 %>%</td>
-                                    <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? balance.round(2) : 0 %> </td>
-                                    <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? (balance - batch).round(2) : 0 %> </td>
-                                    <td class="stock-infos">
-                                      <%= link_to 'x', wallet_stock, method: :delete, data: { confirm: 'Are you sure?' }, class: "destroy-btn btn btn-danger shadow" %>
-                                    <td class="stock-infos">
-                                      <div class="d-flex flex-column">
-                                      <% if stock_res.mms5_status = "Down" && stock_res.mms14_status = "Down"  && wallet_stock.stock.price_now < stock_res.current_price %>
-                                        <p> <%= "Sell" %> </p>
-                                      <% elsif wallet_stock.stock.price_now <= stock_res.current_price %>
-                                        <p> <%= "Going Down" %> </p>
-                                      <% else %>
-                                        <p> <%= "Going Up" %> </p>
-                                      <% end %>
-                                      <p><%= stock_res.mms14_status = "Down" ? "Downtrend" : "-" %></p>
-                                      </div>
-                                    </td>
-                                    <td><%= link_to 'Destroy', wallet_stock, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-destroy rounded-pill" %>
-                                    </td>
-                                </tr>
-                                <% end %>
-                        </table>
-                    </div>
-                </div>
+    <!--WALLET INIT-->
+    <div class="wallet-wrapper container-fluid">
+      <h3 class="wallet-heading mb-4 d-flex justify-content-center"> <%= @wallet.name %> </h3>
+        <div class="balance-card card">
+          <div class="card-body">
+            <div class="table-responsive table my-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+              <table class="whole-table table" id="dataTable">
+                <thead>
+                  <tr class="table-title">
+                    <th class="stock-table-header">Date of Purchase</th>
+                    <th class="stock-table-header">Batch</th>
+                    <th class="stock-table-header">Stock</th>
+                    <th class="stock-table-header">Price per stock</th>
+                    <th class="stock-table-header">Batch Cost</th>
+                    <th class="stock-table-header">Price to Overcome</th>
+                    <th class="stock-table-header">Year Range</th>
+                    <th class="stock-table-header"  id="stock-price">Price Now</th>
+                    <th class="stock-table-header">Average</@wallet_stocktion</th>
+                    <th class="stock-table-header">Balance</th>
+                    <th class="stock-table-header">Profit</th>
+                    <th class="stock-table-header">Status</th>
+                    <th class="stock-table-header"></th>
+                    <th class="stock-table-header"></th>
+                    <th class="stock-table-header"></th>
+                    <th class="stock-table-header"></th>
+                    <th class="stock-table-header"></th>
+                  </tr>
+                </thead>
+                <tbody class="balance-body">
+                  <% @wallet.wallet_stocks.each do |wallet_stock| %>
+                    <tr id="stock-row">
+                      <%  stock_res = calculate(wallet_stock.stock) %>
+                      <td class="stock-infos"> <%= wallet_stock.date %> </td>
+                      <td class="stock-infos"><%= wallet_stock.number_of_stock %> </td>
+                      <td  class="stock-infos p-3" id="stock-symbol"><i class="arrow-up fas fa-angle-double-up"></i><%= wallet_stock.stock.symbol %> </td>
+                      <td class="stock-infos"><%= wallet_stock.investment_stock %> </td>
+                      <% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>
+                      <% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>
+                      <td class="stock-infos"><%= batch.round(2) %> </td>
+                      <td class="stock-infos"><%= (batch/wallet_stock.number_of_stock).round(2) %> </td>
+                      <td class="stock-infos">
+                        <div class="d-flex flex-column">
+                          <p><%= wallet_stock.stock.year_range_high %></p>
+                            <% average_year = (wallet_stock.stock.year_range_high + wallet_stock.stock.year_range_low)/2 %>
+                          <p><%= average_year.round(2) %></p>
+                          <p><%= wallet_stock.stock.year_range_low %></p>
+                        </div>
+                      </td>
+                      <td class="stock-infos" id="stock-price">
+                      <%= wallet_stock.stock.price_now %> </td>
+                      <td class="stock-infos"><%= wallet_stock.stock.price_now <= (average_year) + 2/100 ? 'Cheap' : 'Expensive' %> </td>
+                        <% price_total = (wallet_stock.stock.price_now*wallet_stock.number_of_stock) %>
+                        <% balance = price_total - ((price_total*0.0325/100)+2.49) %>
+                      <td class="stock-infos"><%= wallet_stock.number_of_stock != 0 ? (((balance/batch) - 1)*100).round(2)  : 0 %>%</td>
+                      <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? balance.round(2) : 0 %> </td>
+                      <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? (balance - batch).round(2) : 0 %> </td>
+                      <td>
+                        <div class="high-low d-flex">
+                          <div class="sugestion d-flex">
+                            <% if stock_res.mms5_status = "Down" && stock_res.mms14_status = "Down"  && wallet_stock.stock.price_now < stock_res.current_price %>
+                              <p id="sell"> <%= "Sell" %> </p>
+                            <% elsif wallet_stock.stock.price_now <= stock_res.current_price %>
+                              <p id="going-down"> <%= "Going Down" %> </p>
+                            <% else %>
+                              <p id="going-up"> <%= "Going Up" %> </p>
+                            <% end %>
+                          </div>
+                          <div class="d-flex align-items-center">
+                            <p id="trend"><%= stock_res.mms14_status = "Down" ? "Downtrend" : "-" %></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="stock-infos">
+                        <%= link_to wallet_stock, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                          <i class="fas fa-trash-alt color-trash"></i>
+                        <%end%>
+                      </td>
+                    </tr>
+                  <% end %>
+              </table>
             </div>
+          </div>
+         </div>
 
 
              <!-- <div class="card shadow mt-3">
@@ -117,7 +128,7 @@
 
 
                 <div class="card-collapse card-header">
-                  <p class="m-0"><button class="btn-text btn btn-success shadow" type="button" data-toggle="collapse"
+                  <p class="m-0"><button class="btn-text btn btn-success shadow data-bs-toggle" type="button" data-toggle="collapse"
                     data-target="#addStock" aria-expanded="false" aria-controls="addStock">ADD STOCK +</button>
                   </p>
                 </div>
@@ -132,7 +143,7 @@
                             <%= f.input :number_of_stock, input_html:{class: "input-fields"}  %>
                             <%= f.association :stock, collection: Stock.order(:name), input_html:{class: "input-fields"}  %>
                             <%= f.input :investment_stock, input_html:{class: "input-fields"}  %>
-                            <%= f.submit class: "btn-add-stock"%>
+                            <%= f.submit class: "btn-add-stock",  value: "Add to Wallet" %>
                           <% end %>
                         </div>
                     </div>

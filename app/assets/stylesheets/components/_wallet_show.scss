@@ -110,3 +110,42 @@ th {
 .input-fields {
   border-radius: 3px;
 }
+
+.btn-add-stock {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  color: black;
+  font-weight: bold;
+  border-radius: 3px;
+  background-color: green;
+  border-style: hidden;
+}
+
+.sugestion {
+  font-family: Nunito, sans-serif;
+  font-size: 17px;
+  margin-left: 3px;
+}
+
+#sell {
+  color: rgb(226, 226, 17);
+  font-weight: bold;
+}
+
+#going-down {
+  color: red;
+  font-weight: bold;
+}
+
+#going-up {
+   color: red;
+   font-weight: bold;
+}
+
+#trend {
+  font-family: Nunito, sans-serif;
+  font-size: 17px;
+  padding: 3px;
+  color: red;
+   font-weight: bold;
+}
