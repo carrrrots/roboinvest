@@ -63,10 +63,18 @@
                             </thead>
                             <tbody id="wallet-table">
                               <% @wallets.each do |wallet| %>
+                                <% wallet.wallet_stocks.each do |wallet_stock| %>
+                                <% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>
+                                <% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>
+                                <% price_total = (wallet_stock.stock.price_now*wallet_stock.number_of_stock) %>
+                                <% balance = price_total - ((price_total*0.0325/100)+2.49) %>
+                                <% wallet.profit = wallet.profit + balance  %>
+                                <% wallet.invested_money = wallet.invested_money + batch %>
+                                <% end %>
                                 <tr class="text-lg-center">
                                   <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
-                                  <td class="table-info">$<%= wallet.invested_money %></td>
-                                  <td class="table-info">$<%= wallet.profit %></td>
+                                  <td class="table-info">$<%= wallet.invested_money.round(2) %></td>
+                                  <td class="table-info">$<%= wallet.profit.round(2) %></td>
                                   <td class="table-info"><%= wallet.created_at %></td>
                                   <td class="table-info"><%= link_to wallet, method: :delete, data: { confirm: 'Are you sure?' } do %>
                                     <i class="fas fa-trash-alt color-trash"></i>
