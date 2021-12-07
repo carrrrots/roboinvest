@@ -98,7 +98,7 @@
                                               <% else %>
                                                 <p> <%= "Going Up" %> </p>
                                               <% end %>
-                                              <p><%= res.mms14_status = "Down" ? "Downtrend" : "-" %></p>
+                                              <p><%= stock_res.mms14_status = "Down" ? "Downtrend" : "-" %></p>
                                               </div>
                                             </td>
                                             <td><%= link_to 'Destroy', wallet_stock, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-destroy rounded-pill" %>
