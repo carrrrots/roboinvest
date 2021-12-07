@@ -1,6 +1,8 @@
 require 'open-uri'
+require 'ostruct'
+
 class StocksController < ApplicationController
-before_action :set_stock, only: %i[show]
+  before_action :set_stock, only: %i[show]
 
   def index
     @stocks = Stock.all
@@ -11,7 +13,6 @@ before_action :set_stock, only: %i[show]
   end
 
   def search
-
     @stock = Stock.where(symbol: params[:query].upcase).first
     if @stock
       redirect_to @stock
@@ -19,7 +20,6 @@ before_action :set_stock, only: %i[show]
       redirect_to request.referer, notice: "Stock not found!"
     end
   end
-
 
   private
 
