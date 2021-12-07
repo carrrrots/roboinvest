@@ -2,28 +2,45 @@
   <div class="whole-sidebar shadow col-sm d-flex flex-column justify-content-between ">
     <nav  id="sidebar" class="sidebar-options">
         <div class="sidebar-header">
-            <h3><i class="fas fa-dice-d20 fa-3x logo-dice mt-2 mb-2"></i>RoboInvest</h3>
+            <i class="fas fa-dice-d20 fa-5x logo-dice mt-2 mb-3"></i>
+            <h3 >RoboInvest</h3>
         </div>
         <ul class="list-unstyled components">
-            <li class="mb-4">
-              <% if user_signed_in? %>
-                <%= link_to "Dashboard", dashboard_path%>
-                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-              <% else %>
-                <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
-              <% end %>
+            <li>
+              <div class=" mb-5 mt-5">
+                <%= form_with(url: search_path,
+                  method: "get",
+                  html: {class: "form-inline d-none d-sm-inline-block navbar-search"}
+                  ) do |f| %>
+                    <%= f.text_field :query,
+                        class: "form-control rounded-pill",
+                        id: "search-bar",
+                        placeholder: "Find Stock"
+                    %>
+                    <%= f.submit "Go", class: "btn btn-light action-button text-white p-1" %>
+                <% end %>
+              </div>
             </li>
             <li class="my-1">
                 <a href="/">Home</a>
             </li>
             <li class="my-1">
-                <a href="/stocks">Stocks</a>
+                <a href="/about"> About</a>
             </li>
             <li class="my-1">
                 <a href="/wallets"> Wallet</a>
             </li>
             <li class="my-1">
                 <%= link_to "Back", :back%>
+            </li>
+            <li class="mb-4 mt-5">
+              <% if user_signed_in? %>
+                <%= link_to destroy_user_session_path, method: :delete do%>
+                  <i class="fas fa-user-circle mr-2"></i>Logout
+                <%end%>
+              <% else %>
+                <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
+              <% end %>
             </li>
         </ul>
     </nav>

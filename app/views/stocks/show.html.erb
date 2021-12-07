@@ -3,17 +3,7 @@
         <div class="container-fluid">
           <h1 class=" text-title-stock text-white"> <%= @stock.name %></h1>
           <div class="d-flex justify-content-end">
-            <%= form_with(url: search_path,
-              method: "get",
-              html: {class: "form-inline d-none d-sm-inline-block ml-md-3 my-md-0 mw-100 navbar-search"}
-              ) do |f| %>
-                <%= f.text_field :query,
-                    class: "form-control rounded-pill",
-                    id: "search-bar",
-                    placeholder: "Find Stock"
-                %>
-                <%= f.submit "Stock", class: "btn btn-light action-button text-white" %>
-              <% end %>
+
           </div>
             <div class="row mb-3 mt-5">
                 <div class="col-lg-4 d-flex flex-column justify-content-between">
