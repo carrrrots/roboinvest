@@ -11,13 +11,9 @@ class ApplicationController < ActionController::Base
     mms5_current = stock.array_stock[11..15].sum / 5
     mms14_before = stock.array_stock[1..14].sum / 14
     mms14_current = stock.array_stock[2..15].sum / 14
-
-    diff_stock_before = Array.new(14) { 0 }
-    gain_stock_before = Array.new(14) { 0 }
-    loss_stock_before = Array.new(14) { 0  }
-    diff_stock_current = Array.new(14) { 0 }
-    gain_stock_current = Array.new(14) { 0 }
-    loss_stock_current = Array.new(14) { 0 }
+    diff_stock_before, gain_stock_before,
+    loss_stock_before, diff_stock_current,
+    gain_stock_current, loss_stock_current = Array.new(6) { Array.new(14) { 0 } }
     diff_stock_before.each_index do |i|
       diff_stock_before[i] = stock.array_stock[i + 1] - stock.array_stock[i]
       diff_stock_before[i].positive? ? gain_stock_before[i] = diff_stock_before[i] : gain_stock_before[i] = 0
@@ -44,5 +40,18 @@ class ApplicationController < ActionController::Base
                    ifr_current: ifr_current, ifr_before: ifr_before, mms5_status: mms5_status,
                    mms14_status: mms14_status, mms5_mms14_status: mms5_mms14_status, ifr_status: ifr_status)
   end
+
+  def calculate_profit(wallet)
+    wallet.wallet_stocks.each do |wallet_stock|
+      wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock
+      batch = (wallet_stock.batch_cost + ((wallet_stock.batch_cost * 0.0325) / 100) + 2.49)
+      price_total = (wallet_stock.stock.price_now * wallet_stock.number_of_stock)
+      balance = price_total - ((price_total * 0.0325 / 100) + 2.49)
+      wallet.profit = wallet.profit + balance
+      wallet.invested_money = wallet.invested_money + batch
+    end
+  end
+
+  helper_method :calculate_profit
   helper_method :calculate
 end

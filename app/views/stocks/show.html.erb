@@ -9,35 +9,16 @@
                 <div class="col-lg-4 d-flex flex-column justify-content-between">
                     <div class="card mb-3">
                       <div class="card-header card-header-stock py-3">
-                        <h6 class="text-primary font-weight-bold m-0">Description</h6>
+                        <h6 class="text-primary font-weight-bold m-0">Last 16 Closing Values</h6>
                       </div>
-                      <div class="card-body card-body-stock text-center shadow"> <%= @stock.description %> </div>
+                      <div class="card-body card-body-stock text-center shadow">
+                      <% stock_by_day = Hash[(1..@stock.array_stock.size).to_a.reverse.zip @stock.array_stock] %>
+                      <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1}, backgroundColor: { fill:'transparent' }  }, colors: ["#b00", "#666"]  %>
+                      </div>
                     </div>
                     <div class="card shadow">
                         <div class="card-header card-header-stock py-3">
-                            <h6 class="text-primary font-weight-bold m-0">Projects</h6>
-                        </div>
-                        <div class="card-body card-body-stock ">
-                            <h4 class="small font-weight-bold text-primary">Server migration<span class="float-right">20%</span></h4>
-                            <div class="progress progress-sm mb-3">
-                                <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span></div>
-                            </div>
-                            <h4 class="small font-weight-bold text-primary">Sales tracking<span class="float-right">40%</span></h4>
-                            <div class="progress progress-sm mb-3">
-                                <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span></div>
-                            </div>
-                            <h4 class="small font-weight-bold text-primary">Customer Database<span class="float-right">60%</span></h4>
-                            <div class="progress progress-sm mb-3">
-                                <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span></div>
-                            </div>
-                            <h4 class="small font-weight-bold text-primary">Payout Details<span class="float-right">80%</span></h4>
-                            <div class="progress progress-sm mb-3">
-                                <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="sr-only">80%</span></div>
-                            </div>
-                            <h4 class="small font-weight-bold text-primary">Account setup<span class="float-right">Complete!</span></h4>
-                            <div class="progress progress-sm mb-3">
-                                <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span class="sr-only">100%</span></div>
-                            </div>
+                            <h6 class="text-primary font-weight-bold m-0">News</h6>
                         </div>
                     </div>
                 </div>
@@ -47,9 +28,6 @@
                             <div class="card shadow mb-3">
                                 <div class="card-header card-header-stock py-3 d-flex justify-content-between ">
                                     <h4 class="text-primary m-0 font-weight-bold "> Stock Info </h4>
-                                    <div class="form-group">
-                                      <button class="btn btn-light action-button sign-up" id="stock-button" type="submit">Add&nbsp;to Wallet</button>
-                                    </div>
                                 </div>
                                 <div class="card-body card-body-stock">
 
@@ -104,7 +82,7 @@
                             </div>
                             <div class="card shadow">
                                 <div class="card-header card-header-stock py-3">
-                                    <p class="text-primary m-0 font-weight-bold">Your Investment</p>
+                                    <p class="text-primary m-0 font-weight-bold">Pointers</p>
                                 </div>
                                 <div class="card-body card-body-stock">
                                         <%  stock_res = calculate(@stock) %>
