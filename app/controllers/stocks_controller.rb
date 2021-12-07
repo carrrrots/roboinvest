@@ -3,6 +3,7 @@ require 'ostruct'
 
 class StocksController < ApplicationController
   before_action :set_stock, only: %i[show]
+  skip_before_action :authenticate_user!, only: %i[show search]
 
   def index
     @stocks = Stock.all
