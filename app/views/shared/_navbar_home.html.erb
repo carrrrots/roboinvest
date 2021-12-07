@@ -2,7 +2,7 @@
   <div class="container-fluid">
       <%= link_to root_path, class: "navbar-brand" do %>
         <div class=" d-inline-flex justify-content-center align-items-center">
-            <i class="fas fa-dice-d20 fa-3x mr-2"></i><h2 class="mb-0">RoboInvest</h2>
+            <i class="fas fa-dice-d20 fa-lg m-3"></i><h2 class="logo-title mb-0">RoboInvest</h2>
         </div>
       <% end %>
     <div>
@@ -12,17 +12,18 @@
             html: {class: "form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"}
             ) do |f| %>
             <%= f.text_field :query,
-                  class: "form-control rounded-pill",
+                  class: "search-home form-control rounded-pill",
                   id: "search-bar",
-                  placeholder: "Find Stock"
+                  placeholder: "Find a Stock"
                 %>
-                <%= f.submit "Stock", class: "btn btn-light action-button text-white" %>
+                <%= f.submit "Find", class: "btn-find btn btn-light action-button text-white" %>
             <% end %>
       </div>
     </div>
     <% if user_signed_in? %>
       <div>
-        <span class="navbar-text"><%= link_to "Logout", destroy_user_session_path, class: "login", method: :delete %></span>
+        <span class="navbar-text"><%= link_to "Logout", destroy_user_session_path, class: "dropdown-item login p-2", method: :delete %></span>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       </div>
     <% else %>
       <div>
