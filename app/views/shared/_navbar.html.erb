@@ -2,7 +2,8 @@
   <div class="whole-sidebar shadow col-sm d-flex flex-column justify-content-between ">
     <nav  id="sidebar" class="sidebar-options">
         <div class="sidebar-header">
-            <h3><i class="fas fa-dice-d20 fa-3x logo-dice mt-2 mb-2"></i>RoboInvest</h3>
+            <i class="fas fa-dice-d20 fa-5x logo-dice mt-2 mb-2"></i>
+            <h3>RoboInvest</h3>
         </div>
         <ul class="list-unstyled components">
             <li class="mb-4">
@@ -12,6 +13,21 @@
               <% else %>
                 <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
               <% end %>
+            </li>
+            <li>
+              <div class=" mb-5">
+                <%= form_with(url: search_path,
+                  method: "get",
+                  html: {class: "form-inline d-none d-sm-inline-block navbar-search"}
+                  ) do |f| %>
+                    <%= f.text_field :query,
+                        class: "form-control rounded-pill",
+                        id: "search-bar",
+                        placeholder: "Find Stock"
+                    %>
+                    <%= f.submit "Go", class: "btn btn-light action-button text-white p-1" %>
+                <% end %>
+              </div>
             </li>
             <li class="my-1">
                 <a href="/">Home</a>
