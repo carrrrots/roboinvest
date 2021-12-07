@@ -6,16 +6,8 @@
             <h3>RoboInvest</h3>
         </div>
         <ul class="list-unstyled components">
-            <li class="mb-4">
-              <% if user_signed_in? %>
-                <%= link_to "Dashboard", dashboard_path%>
-                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-              <% else %>
-                <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
-              <% end %>
-            </li>
             <li>
-              <div class=" mb-5">
+              <div class=" mb-5 mt-5">
                 <%= form_with(url: search_path,
                   method: "get",
                   html: {class: "form-inline d-none d-sm-inline-block navbar-search"}
@@ -29,11 +21,18 @@
                 <% end %>
               </div>
             </li>
+            <li class="mb-4">
+              <% if user_signed_in? %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <% else %>
+                <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
+              <% end %>
+            </li>
             <li class="my-1">
                 <a href="/">Home</a>
             </li>
             <li class="my-1">
-                <a href="/stocks">Stocks</a>
+                <a href="/about"> About</a>
             </li>
             <li class="my-1">
                 <a href="/wallets"> Wallet</a>
