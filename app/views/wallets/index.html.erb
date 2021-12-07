@@ -2,7 +2,7 @@
 <div>
     <div class='wallet-container' id="content">
         <div class="container-fluid bg-transparent col-md">
-          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Welcome</div>
+          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Your Wallets <i class="fas fa-wallet ml-2 mt-2"></i></div>
 
 
             <!--COLOCAR SAMPLE DE ALGUMAS STOCKS DO USER-->
@@ -31,7 +31,7 @@
 
             <div class="wallet-card card shadow">
                 <div class="wallet-title card-header py-4 mb-2">
-                    <p class=" m-0 "> My Wallets<i class="fas fa-wallet ml-4"></i> </p>
+                  <a href="/wallets/new"> Add Wallet <i class="fas fa-plus"></i> </a>
                 </div>
                 <div class="card-body">
                     <div class="row search-row">
@@ -56,7 +56,7 @@
                             <thead>
                                 <tr class="column-title text-lg-center">
                                     <th id="column-title">Name</th>
-                                    <th id="column-title">Invested Money</th>
+                                    <th id="column-title">Invested Money <i class="fas fa-coins ml-2"></i></th>
                                     <th id="column-title">Profit <i class="fas fa-chart-line ml-2"></i></th>
                                     <th id="column-title">Creation Date <i class="far fa-calendar-alt ml-2"></i></th>
                                 </tr>
@@ -81,6 +81,16 @@
                                     </td>
                                     <td class="table-info"><%= wallet.created_at %></td>
                                   </tr>
+                                <tr class="text-lg-center">
+                                  <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
+                                  <td class="table-info">$<%= wallet.invested_money %></td>
+                                  <td class="table-info">$<%= wallet.profit %></td>
+                                  <td class="table-info"><%= wallet.created_at %></td>
+                                  <td class="table-info"><%= link_to wallet, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                                    <i class="fas fa-trash-alt color-trash"></i>
+                                    <%end%>
+                                  </td>
+                                </tr>
                               <%end%>
                             </tbody>
                         </table>

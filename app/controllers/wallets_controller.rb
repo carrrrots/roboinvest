@@ -1,6 +1,6 @@
 class WalletsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_wallet, only: %i[show]
+  before_action :set_wallet, only: %i[show destroy]
 
   def index
     @wallets = Wallet.all
@@ -26,10 +26,29 @@ class WalletsController < ApplicationController
     @wallet_stock = WalletStock.new
   end
 
+   def new
+    @wallet = Wallet.new
+  end
+
+  def create
+    @wallet = Wallet.new(wallet_params)
+    @wallet.user = current_user
+    if @wallet.save
+      redirect_to wallet_path(@wallet)
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @wallet.destroy
+    redirect_to wallets_path
+  end
+
 private
 
   def wallet_params
-    params.require(:wallet).permit(:name, :money, :invested_money, :profit)
+    params.require(:wallet).permit(:name, :invested_money)
   end
 
   def set_wallet
