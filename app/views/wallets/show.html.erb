@@ -81,19 +81,25 @@
                       <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? (balance - batch).round(2) : 0 %> </td>
                       <td>
                         <div class="high-low d-flex">
+                          <div class="sugestion-container d-flex flex-column">
                           <div class="sugestion d-flex">
-                            <% if stock_res.mms5_status = "Down" && stock_res.mms14_status = "Down"  && wallet_stock.stock.price_now < stock_res.current_price %>
-                              <p id="sell"> <%= "Sell" %> </p>
-                            <% elsif wallet_stock.stock.price_now <= stock_res.current_price %>
-                              <p id="going-down"> <%= "Going Down" %> </p>
-                            <% else %>
-                              <p id="going-up"> <%= "Going Up" %> </p>
-                            <% end %>
+                            <button type="button" class="btn btn-light bg-transparent rounded-pill" data-toggle="tooltip" data-placement="right" title="comprar ou vender?">
+                              <% if stock_res.mms5_status = "Down" && stock_res.mms14_status = "Down"  && wallet_stock.stock.price_now < stock_res.current_price %>
+                                <p id="sell"> <%= "Sell" %> </p>
+                              <% elsif wallet_stock.stock.price_now <= stock_res.current_price %>
+                                <p id="going-down"> <%= "Going Down" %> </p>
+                              <% else %>
+                                <p id="going-up"> <%= "Going Up" %> </p>
+                              <% end %>
+                            </button>
                           </div>
+
                           <div class="d-flex align-items-center">
                             <p id="trend"><%= stock_res.mms14_status = "Down" ? "Downtrend" : "-" %></p>
                           </div>
+                          </div>
                         </div>
+
                       </td>
                       <td class="stock-infos">
                         <%= link_to wallet_stock, method: :delete, data: { confirm: 'Are you sure?' } do %>
@@ -128,7 +134,7 @@
 
 
                 <div class="card-collapse card-header">
-                  <p class="m-0"><button class="btn-text btn btn-success shadow data-bs-toggle" type="button" data-toggle="collapse"
+                  <p class="m-0"><button class="btn-text btn btn-success shadow data-bs-toggle" type="button" data-toggle="collapse" data-toggle="true"
                     data-target="#addStock" aria-expanded="false" aria-controls="addStock">ADD STOCK +</button>
                   </p>
                 </div>
