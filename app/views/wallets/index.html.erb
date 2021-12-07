@@ -66,7 +66,7 @@
                               <% @wallets.each do |wallet| %>
                                 <tr class="text-lg-center">
                                   <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
-                                  <td class="table-info">$<%= wallet.money %></td>
+                                  <!--<td class="table-info">$<%= wallet.money %></td>-->
                                   <td class="table-info">$<%= wallet.invested_money %></td>
                                   <td class="table-info">$<%= wallet.profit %></td>
                                   <td class="table-info"><%= wallet.created_at %></td>

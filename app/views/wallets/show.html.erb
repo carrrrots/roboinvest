@@ -1,6 +1,8 @@
-        <div class="d-flex flex-column w-100" id="content-wrapper">
+        <div class="d-flex flex-column justify-content-center w-100" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+
+
+                <nav class="navbar navbar-light navbar-expand topbar static-top w-75">
                     <div class="container-fluid">
 
                             <%= form_with(url: search_path,
@@ -8,23 +10,13 @@
                              html: {class: "form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"}
                              ) do |f| %>
                               <%= f.text_field :query,
-                                    class: "form-control ",
+                                    class: "stock-search form-control rounded-pill",
                                     id: "search-bar",
                                     placeholder: "Find Stock"
                                   %>
-                                  <%= f.submit "Stock", class: "btn btn-primary" %>
+                                  <%= f.submit "Find", class: "btn btn-primary" , id: "find-btn%>
                               <% end %>
 
-                        <ul class="navbar-nav flex-nowrap ml-auto">
-                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="form-inline mr-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
 
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
