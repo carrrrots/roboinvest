@@ -1,10 +1,10 @@
 <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search w-100" id="navbarhome">
   <div class="container-fluid">
-    <div class=" d-inline-flex">
       <%= link_to root_path, class: "navbar-brand" do %>
-        <i class="fas fa-dice-d20 fa-2x"><h2>RoboInvest</h2></i>
+        <div class=" d-inline-flex justify-content-center align-items-center">
+            <i class="fas fa-dice-d20 fa-3x mr-2"></i><h2 class="mb-0">RoboInvest</h2>
+        </div>
       <% end %>
-    </div>
     <div>
       <div class="collapse navbar-collapse" id="navcol-1">
         <%= form_with(url: search_path,
