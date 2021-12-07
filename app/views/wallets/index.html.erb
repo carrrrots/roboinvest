@@ -2,7 +2,7 @@
 <div>
     <div class='wallet-container' id="content">
         <div class="container-fluid bg-transparent col-md">
-          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Your Wallets <i class="fas fa-wallet ml-2 mt-2"></i></div>
+          <div class="welcome d-flex justify-content-center mb-5 mt-3"> <%=current_user.nickname %> Wallets <i class="fas fa-wallet ml-2 mt-2"></i></div>
 
 
             <!--COLOCAR SAMPLE DE ALGUMAS STOCKS DO USER-->
@@ -75,7 +75,7 @@
                                   <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
                                   <td class="table-info">$<%= wallet.invested_money.round(2) %></td>
                                   <td class="table-info">$<%= wallet.profit.round(2) %></td>
-                                  <td class="table-info"><%= wallet.created_at %></td>
+                                  <td class="table-info"><%= wallet.created_at.strftime("%m/%d/%y") %></td>
                                   <td class="table-info"><%= link_to wallet, method: :delete, data: { confirm: 'Are you sure?' } do %>
                                     <i class="fas fa-trash-alt color-trash"></i>
                                     <%end%>

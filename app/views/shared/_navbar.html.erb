@@ -25,7 +25,7 @@
                 <a href="/">Home</a>
             </li>
             <li class="my-1">
-                <a href="/stocks">Stocks</a>
+                <a href="/about"> About</a>
             </li>
             <li class="my-1">
                 <a href="/wallets"> Wallet</a>
@@ -33,9 +33,11 @@
             <li class="my-1">
                 <%= link_to "Back", :back%>
             </li>
-            <li class="mb-4">
+            <li class="mb-4 mt-5">
               <% if user_signed_in? %>
-                <%= link_to "Logout", destroy_user_session_path,  method: :delete, class: "logout btn btn-danger shadow w-50 rounded-pill" %>
+                <%= link_to destroy_user_session_path, method: :delete do%>
+                  <i class="fas fa-user-circle mr-2"></i>Logout
+                <%end%>
               <% else %>
                 <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
               <% end %>
