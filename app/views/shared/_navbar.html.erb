@@ -2,8 +2,8 @@
   <div class="whole-sidebar shadow col-sm d-flex flex-column justify-content-between ">
     <nav  id="sidebar" class="sidebar-options">
         <div class="sidebar-header">
-            <i class="fas fa-dice-d20 fa-5x logo-dice mt-2 mb-2"></i>
-            <h3>RoboInvest</h3>
+            <i class="fas fa-dice-d20 fa-5x logo-dice mt-2 mb-3"></i>
+            <h3 >RoboInvest</h3>
         </div>
         <ul class="list-unstyled components">
             <li>
@@ -41,6 +41,13 @@
             </li>
             <li class="my-1">
                 <%= link_to "Back", :back%>
+            </li>
+            <li class="mb-4">
+              <% if user_signed_in? %>
+                <%= link_to "Logout", destroy_user_session_path,  method: :delete, class: "logout btn btn-danger shadow w-50 rounded-pill" %>
+              <% else %>
+                <a href="/users/sign_in"><i class="fas fa-user-circle mr-2"></i>Login</a></li>
+              <% end %>
             </li>
         </ul>
     </nav>

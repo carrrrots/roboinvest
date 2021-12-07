@@ -19,6 +19,10 @@ a:focus {
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+h3 {
+  font-family: Nunito, sans-serif;
+}
+
 .sidebar-place {
   display: flex;
   min-height: 100vh;
@@ -96,6 +100,11 @@ a.article,
     color: #fff !important;
 }
 
+.logout {
+  border-style: hidden;
+  background-color: transparent;
+  align-items: center;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -131,6 +140,8 @@ a.article,
 
 .sidebar-header {
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
   color: rgba(255, 255, 255, 0.925);
+
 }
