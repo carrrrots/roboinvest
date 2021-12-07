@@ -57,39 +57,7 @@
                                     <tbody>
                                     <% @wallet.wallet_stocks.each do |wallet_stock| %>
                                         <tr>
-                                                    <% before_price =  wallet_stock.stock.array_stock[-2] %>
-                                                    <% current_price = wallet_stock.stock.array_stock[-1] %>
-                                                    <% mms5_before = wallet_stock.stock.array_stock[10..14].sum / 5 %>
-                                                    <% mms5_current = wallet_stock.stock.array_stock[11..15].sum / 5 %>
-                                                    <% mms14_before = wallet_stock.stock.array_stock[1..14].sum / 14 %>
-                                                    <% mms14_current = wallet_stock.stock.array_stock[2..15].sum / 14 %>
-                                                    <% diff_stock_before = Array.new(14) {0} %>
-                                                    <% gain_stock_before = Array.new(14) {0} %>
-                                                    <% loss_stock_before = Array.new(14) {0} %>
-                                                    <% diff_stock_current = Array.new(14) {0} %>
-                                                    <% gain_stock_current = Array.new(14) {0} %>
-                                                    <% loss_stock_current = Array.new(14) {0} %>
-                                                    <% diff_stock_before.each_index do |i| %>
-                                                      <% diff_stock_before[i] = wallet_stock.stock.array_stock[i+1] - wallet_stock.stock.array_stock[i] %>
-                                                      <% diff_stock_before[i] > 0 ? gain_stock_before[i] = diff_stock_before[i] : gain_stock_before[i] = 0 %>
-                                                      <% diff_stock_before[i] < 0 ? loss_stock_before[i] = diff_stock_before[i].abs : loss_stock_before[i] = 0 %>
-                                                      <% diff_stock_current[i] = wallet_stock.stock.array_stock[i+2] - wallet_stock.stock.array_stock[i+1] %>
-                                                      <% diff_stock_current[i] > 0 ? gain_stock_current[i] = diff_stock_current[i] : gain_stock_current[i] = 0 %>
-                                                      <% diff_stock_current[i] < 0 ? loss_stock_current[i] = diff_stock_current[i].abs : loss_stock_current[i] = 0 %>
-                                                    <% end %>
-                                                    <% average_gain_before = gain_stock_before.sum / gain_stock_before.length %>
-                                                    <% average_loss_before = loss_stock_before.sum / loss_stock_before.length %>
-                                                    <% average_gain_current = gain_stock_current.sum / gain_stock_current.length %>
-                                                    <% average_loss_current = loss_stock_current.sum / loss_stock_current.length %>
-                                                    <% average_loss_before.zero? ? fr_before = 0 : fr_before = average_gain_before / average_loss_before %>
-                                                    <% average_loss_current.zero? ? fr_current = 0 : fr_current = average_gain_current / average_loss_current %>
-                                                    <% fr_before.zero? ? ifr_before = "" : ifr_before = 100 - ( 100 / ( 1 + fr_before)) %>
-                                                    <% fr_current.zero? ? ifr_current = "" : ifr_current = 100 - ( 100 / ( 1 + fr_current)) %>
-                                                    <% mms5_before < mms5_current ? mms5_status = "Down" : mms5_status = "Up" %>
-                                                    <% mms14_before < mms14_current ? mms14_status = "Down" : mms14_status = "Up" %>
-                                                    <% mms5_current > mms14_current ? mms5_mms14_status = "Up" : mms5_mms14_status = "Down" %>
-                                                    <% ifr_before < ifr_current ? ifr_status = "Down" : ifr_status = "Up" %>
-
+                                            <%  stock_res = calculate(wallet_stock.stock) %>
                                             <td> <%= wallet_stock.date %> </td>
                                             <td><%= wallet_stock.number_of_stock %> </td>
                                             <td><%= wallet_stock.stock.symbol %> </td>
@@ -115,17 +83,19 @@
                                             <td><%= wallet_stock.investment_stock > 0 ? (balance - batch).round(2) : 0 %> </td>
                                             <td>
                                               <div class="d-flex flex-column">
-                                              <% if mms5_status = "Down" && mms14_status = "Down"  && wallet_stock.stock.price_now < current_price %>
+                                              <% if stock_res.mms5_status = "Down" && stock_res.mms14_status = "Down"  && wallet_stock.stock.price_now < stock_res.current_price %>
                                                 <p> <%= "Sell" %> </p>
-                                              <% elsif wallet_stock.stock.price_now <= current_price %>
+                                              <% elsif wallet_stock.stock.price_now <= stock_res.current_price %>
                                                 <p> <%= "Going Down" %> </p>
                                               <% else %>
                                                 <p> <%= "Going Up" %> </p>
                                               <% end %>
-                                              <p><%=mms14_status = "Down" ? "Downtrend" : "-" %></p>
+                                              <p><%= stock_res.mms14_status = "Down" ? "Downtrend" : "-" %></p>
                                               </div>
                                             </td>
-                                            <td><%= link_to 'Destroy', wallet_stock, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-destroy rounded-pill" %></td>
+                                            <td><%= link_to 'Destroy', wallet_stock, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-destroy rounded-pill" %>
+
+                                            </td>
                                         </tr>
                                        <% end %>
 
