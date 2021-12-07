@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 2021_12_06_193730) do
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.float "invested_money"
-    t.float "profit"
+    t.float "invested_money", default: 0.0
+    t.float "profit", default: 0.0
     t.string "name"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

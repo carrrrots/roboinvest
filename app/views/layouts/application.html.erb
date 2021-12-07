@@ -47,14 +47,19 @@
         <%= render "shared/navbar" %>
         <%= yield %>
       </div>
-    <% elsif current_page?(stock_path) %>
+    <% elsif current_page?(about_path) %>
+      <%= yield %>
+      <%= render "shared/footer" %>
+    <% elsif current_page?(stock_path(1)) %>
       <div class="sidebar-place">
         <%= render "shared/navbar" %>
         <%= yield %>
       </div>
-    <% elsif current_page?(about_path) %>
-      <%= yield %>
-      <%= render "shared/footer" %>
+    <% elsif current_page?(new_wallet_path)%>
+      <div class="sidebar-place">
+        <%= render "shared/navbar" %>
+        <%= yield %>
+      </div>
     <% else %>
       <div class=" d-flex w-100 ">
         <%= render "shared/navbar" %>
