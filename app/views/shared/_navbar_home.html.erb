@@ -23,7 +23,6 @@
     <% if user_signed_in? %>
       <div>
         <span class="navbar-text"><%= link_to "Logout", destroy_user_session_path, class: "login", method: :delete %></span>
-        <%= link_to "Dashboard", dashboard_path, class: "btn btn-light action-button sign-up" %>
       </div>
     <% else %>
       <div>
