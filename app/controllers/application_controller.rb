@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     average_loss_current = loss_stock_current.sum / loss_stock_current.length
     average_loss_before.zero? ? fr_before = 0 : fr_before = average_gain_before / average_loss_before
     average_loss_current.zero? ? fr_current = 0 : fr_current = average_gain_current / average_loss_current
-    fr_before.zero? ? ifr_before = "" : ifr_before = 100 - (100 / ( 1 + fr_before))
+    fr_before.zero? ? ifr_before = "" : ifr_before = 100 - (100 / (1 + fr_before))
     fr_current.zero? ? ifr_current = "" : ifr_current = 100 - (100 / (1 + fr_current))
     mms5_before < mms5_current ? mms5_status = "Down" : mms5_status = "Up"
     mms14_before < mms14_current ? mms14_status = "Down" : mms14_status = "Up"
