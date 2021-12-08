@@ -12,7 +12,7 @@
       </div>
     </nav>
 
-    <!--WALLET INIT-->
+    <!--WALLET INIiT-->
     <div class="wallet-wrapper container-fluid">
       <h3 class="wallet-heading mb-4 d-flex justify-content-center"> <%= @wallet.name %> </h3>
         <div class="balance-card card">
@@ -34,11 +34,6 @@
                     <th class="stock-table-header">Balance</th>
                     <th class="stock-table-header">Profit</th>
                     <th class="stock-table-header">Status</th>
-                    <th class="stock-table-header"></th>
-                    <th class="stock-table-header"></th>
-                    <th class="stock-table-header"></th>
-                    <th class="stock-table-header"></th>
-                    <th class="stock-table-header"></th>
                   </tr>
                 </thead>
                 <tbody class="balance-body">
@@ -126,6 +121,17 @@
                 </div>
             </div>
         </div>
+            <div class="stocks-sample d-flex">
+              <div class="card-deck w-100 mb-4 d-flex justify-content-between">
+                <% calculate_profit(@wallet) %>
+                <div class="graph-card card card-img">
+                  <%= pie_chart({"Profit" => @wallet.profit.round(2), "Invested Money" => @wallet.invested_money.round(2)}) %>
+                  <div class="card-footer d-flex justify-content-center">
+                    <small class="text-muted"><%= @wallet.name %></small>
+                  </div>
+                </div>
 
+              </div>
+            </div>
     </div>
 </div>
