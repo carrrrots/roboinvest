@@ -29,9 +29,11 @@ h3 {
 }
 
 .sidebar-container{
+  height: 100%;
     min-width: 300px;
     width:300px;
     color: #fff;
+    position: fixed;
 }
 
 #sidebar.active {

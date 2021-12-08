@@ -41,10 +41,10 @@
         <%= yield %>
         <%= render "shared/footer" %>
     <% else %>
-      <div class="sidebar-place">
         <%= render "shared/navbar" %>
-        <%= yield %>
-      </div>
+        <div class="pages-container">
+          <%= yield %>
+        </div>
     <% end %>
 
 
