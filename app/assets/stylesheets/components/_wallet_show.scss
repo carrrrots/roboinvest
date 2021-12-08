@@ -13,8 +13,9 @@
   color: rgba(255, 255, 255, 0.87);
 }
 
-#wallet-content {
+#content {
   margin-top: 0px;
+  width: 95%;
 }
 
 
@@ -58,16 +59,7 @@ th {
 .stock-infos {
   align-items: center;
   height: 50px;
-  align-items: center;
 
-}
-
-.stock-table-header-main {
-  color: #e6a756;
-  font-family: 'Nunito', sans-serif;
-  font-weight: lighter;
-  font-size: 1rem;
-  min-width: 15vw;
 }
 
 .stock-table-header {
@@ -75,13 +67,13 @@ th {
   font-family: 'Nunito', sans-serif;
   font-weight: lighter;
   font-size: 1rem;
-  min-width: 8vw;
 }
 
 .stock-infos {
   font-family: 'Nunito', sans-serif;
   font-weight: bold;
   font-size: 15px;
+
 }
 
 #stock-symbol {

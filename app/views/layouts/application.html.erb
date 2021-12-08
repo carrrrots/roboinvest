@@ -25,28 +25,18 @@
 
   <body>
     <%= render 'shared/flashes' %>
-    <% if current_page?(root_path) %>
+    <% if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(about_path) %>
       <%= render "shared/navbar_home" %>
-      <%= yield %>
+      <div style='min-height: 70vh'><%= yield %></div>
       <%= render "shared/footer" %>
-    <% elsif current_page?(new_user_session_path) %>
-      <%= render "shared/navbar_home" %>
-      <%= yield %>
-      <%= render "shared/footer" %>
-    <% elsif current_page?(new_user_registration_path) %>
-      <%= render "shared/navbar_home" %>
-      <%= yield %>
-      <%= render "shared/footer" %>
-    <% elsif current_page?(about_path) %>
-        <%= yield %>
-        <%= render "shared/footer" %>
     <% else %>
         <%= render "shared/navbar" %>
+        <div style='min-height: 70vh'>
         <div class="pages-container">
           <%= yield %>
         </div>
+        </div>
     <% end %>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
