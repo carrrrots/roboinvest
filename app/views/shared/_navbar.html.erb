@@ -7,17 +7,17 @@
         </div>
         <ul class="list-unstyled components">
             <li>
-              <div class=" mb-5 mt-5">
+              <div class=" mb-5 mt-5 ">
                 <%= form_with(url: search_path,
                   method: "get",
-                  html: {class: "form-inline d-none d-sm-inline-block navbar-search"}
+                  html: {class: " navbar-search d-flex justify-content-between w-100"}
                   ) do |f| %>
                     <%= f.text_field :query,
-                        class: "form-control rounded-pill",
+                        class: " form-control rounded-pill",
                         id: "search-bar",
                         placeholder: "Find Stock"
                     %>
-                    <%= f.submit "Go", class: "btn btn-light action-button text-white p-1" %>
+                    <%= f.submit "Go", class: "ml-3 btn btn-light action-button text-white p-1" %>
                 <% end %>
               </div>
             </li>
