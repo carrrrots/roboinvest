@@ -1,23 +1,66 @@
+$font-mont: 'Montserrat', sans-serif;
+
+$font-pop: 'Poppins', sans-serif;
+
+$font-rob: 'Roboto', sans-serif;
+
+hr {
+  margin: 0;
+}
+
 .text-title-stock {
-  text-shadow: 2px 2px 4px white;
+  color: #dce0ee;
+  font-family: $font-rob;
+  font-weight: 400;
+
+}
+
+.text-stock {
+  color: #c0cbd6;
+  font-family: $font-pop;
+  font-weight: 500;
+  font-size: small;
+}
+
+.text-stock-content {
+ color: #b8bec5;
+ font-family: $font-mont;
+ font-weight: 500;
+ font-size: small;
 }
 
 #stock-button {
- color: #e6a756;
+ color: #7ECA9C;
  background-color: black;
 
 }
 #stock-button:hover {
     color: #00000083;
-    background-color: #e6a756;;
+    background-color: #7ECA9C;;
   }
 .card-header-stock {
-  background-color: #282d32;
+  background-color: #1C1427;
   border: 0px;
 }
 
 .card-body-stock {
-  color: white;
-  background-color: #282d32;
+  color: rgb(231, 231, 231);
+  background-color: #1C1427;
   border-color: transparent;
+
+}
+
+.img-news {
+    float: left;
+    margin-left: 1rem;
+    width:  7rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 1.5rem;
+}
+
+#stock-title {
+
+  color: rgb(231, 231, 231);
+
 }

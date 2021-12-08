@@ -8,7 +8,7 @@
                 <% @wallets.sample(3).each do |wallet| %>
                 <% calculate_profit(wallet) %>
                 <div class="graph-card card card-img">
-                  <%= pie_chart({"Profit" => wallet.profit.round(2), "Invested Money" => wallet.invested_money.round(2)}) %>
+                  <%= pie_chart({"Profit" => wallet.profit.round(2), "Invested Money" => wallet.invested_money.round(2)}, adapter: "google",  library: { hAxis: {direction: -1}, backgroundColor: { fill:'transparent' }  }) %>
                   <div class="card-footer d-flex justify-content-center">
                     <small class="text-muted"><%= wallet.name %></small>
                   </div>
