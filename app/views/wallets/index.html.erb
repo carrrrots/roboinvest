@@ -1,25 +1,11 @@
 
 <div>
-    <div class='wallet-container' id="content">
+    <div class='wallet-container ml-4' id="content">
         <div class="container-fluid bg-transparent col-md">
-          <div class="welcome d-flex justify-content-center mb-5 mt-3"> Your Wallets <i class="fas fa-wallet ml-2 mt-2"></i></div>
-            <div class="stocks-sample d-flex">
-              <div class="card-deck w-100 mb-4 d-flex justify-content-between">
-                <% @wallets.sample(3).each do |wallet| %>
-                <% calculate_profit(wallet) %>
-                <div class="graph-card card card-img">
-                  <%= pie_chart({"Profit" => wallet.profit.round(2), "Invested Money" => wallet.invested_money.round(2)}, adapter: "google",  library: { hAxis: {direction: -1}, backgroundColor: { fill:'transparent' }  }) %>
-                  <div class="card-footer d-flex justify-content-center">
-                    <small class="text-muted"><%= wallet.name %></small>
-                  </div>
-                </div>
-                <% end %>
-              </div>
-            </div>
-
+          <div class="welcome d-flex justify-content-center mb-5 mt-3"> <%= current_user.nickname%> Wallets <i class="fas fa-wallet ml-2 mt-2"></i></div>
             <div class="wallet-card card shadow">
                 <div class="wallet-title card-header py-4 mb-2">
-                  <a href="/wallets/new"> Add Wallet <i class="fas fa-plus"></i> </a>
+                  <a href="/wallets/new" id="add-walcolor"> Add Wallet <i class="fas fa-plus"></i> </a>
                 </div>
                 <div class="card-body">
                     <div class="row search-row">
@@ -53,7 +39,7 @@
                               <% @wallets.each do |wallet| %>
                                 <% calculate_profit(wallet) %>
                                 <tr class="text-lg-center">
-                                  <td class="text-left "><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet %> </td>
+                                  <td class="text-left"><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet, id:"name-wallet" %> </td>
                                   <td class="table-info">$<%= wallet.invested_money.round(2) %></td>
                                   <td class="table-info">$<%= wallet.profit.round(2) %></td>
                                   <td class="table-info"><%= wallet.created_at.strftime("%m/%d/%y") %></td>

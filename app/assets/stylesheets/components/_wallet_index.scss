@@ -1,16 +1,18 @@
 body {
+  width: 90vw;
   background: linear-gradient(135deg, #1C1427, #7eca9c);
 }
 
 .wallet-container {
   border-radius: 2px;
-  width: 70%;
+  width: 400px;
   position: relative;
 }
 
 .wallet-card {
-  background-color: #282d320c;
+  background-color: #282d32;
   border-color: transparent;
+  width: 70vw;
 }
 
 .wallet-title {
@@ -50,9 +52,10 @@ body {
 }
 
 #column-title {
-  color:white;
+  color:#e6a756;
   font-weight: lighter;
   border-color: transparent;
+  font-size: 1rem;
 }
 
 thead {
@@ -61,20 +64,20 @@ thead {
 }
 
 .text-left {
-  background-color: #282d32d5;
-  border-radius: 3px;
+  background-color: #ffffffa9;
   font-family: Roboto, sans-serif;
-  border-style: outset;
-  box-shadow: 3px 3px 20px #202429c7;
-  border-color:#202429a1;
+  font-weight: bold;
+}
+#name-wallet {
   color: black;
+}
+#add-walcolor {
+  color: #11864d;
 }
 
 .table-info {
   background-color: #ffffffa9;
-  border-radius: 3px;
-   font-family: Roboto,
-   sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .search-row {

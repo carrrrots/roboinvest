@@ -3,7 +3,6 @@
 }
 .site-heading {
     margin-top: 15%;
-    margin-bottom: 15%;
     text-transform: uppercase;
     line-height: 1;
     font-family: 'Raleway', sans-serif;
@@ -22,14 +21,15 @@
   color: #e6a756!important;
 }
 .about-heading-img {
-  margin: 10%;
-  margin-bottom: 10%;
-  width: 90%;
-  height: 500px;
+  opacity: .7;
+  width: 40rem;
+  position: static;
   align-self: center;
+
 }
 .card-about-company {
     border-radius: 0.50rem!important;
+
     background-color: hsla(0,0%,100%,.70);
     display: flex;
     flex-direction: column;
@@ -40,25 +40,31 @@
 .card-about-team {
     border-radius: 0.25rem!important;
     background-color: hsla(0,0%,100%,.70);
-    display: flex;
-    flex-direction: column;
     align-self: center;
     width: 80rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
 }
 .img-about-page {
   border-radius: 50%;
   margin-left: 30%;
+  border-color: #1c1427b2;
+
+  box-shadow: 0 0 10px #1C1427;
 }
 .item-people {
-  background-color: hsla(0,0%,100%,.75);
-  box-shadow: 0 0 1em #7ECA9C;
-  width: 150px;
-  height: 100%;
-  margin: 20px;
+  background-color: #1c1427d3;
+  box-shadow: 0 0 1em #1C1427;
+  margin: 15px;
   border-radius: 5%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 20px;
+  min-width: 10rem;
+  max-width: 15rem;
 }
 .perfil-junto {
   display: flex;
