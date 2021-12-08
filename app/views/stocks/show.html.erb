@@ -1,152 +1,180 @@
 <div class="d-flex flex-column w-100 body-stock">
-    <div id="content">
-        <div class="container-fluid">
-        <div class="btn rounded">
-          <h1 class=" text-title-stock rounded px-2" id="stock-title"> <%= @stock.name %></h1>
-          </div>
-          <div class="d-flex justify-content-end">
-
-          </div>
-            <div class="row mt-5">
-                <div class="col-lg-8 d-flex flex-column justify-content-between">
-                    <div class="card card-body-stock bg-transparent">
-                      <div class="card-header card-header-stock py-3">
-                        <h5 class="text-title-stock font-weight-bold m-0">Last 16 Closing Values</h5>
-                      </div>
-                      <div class="card-body card-body-stock text-center shadow mb-5">
-                      <% stock_by_day = Hash[(1..@stock.array_stock.size).to_a.reverse.zip @stock.array_stock] %>
-                      <% if @stock.array_stock[-1] > @stock.array_stock[-2] %>
-                      <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }}, colors: ['#17c45c']  %>
-                      <% else %>
-                      <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }}, colors: ['#e43529']  %>
-                      <% end %>
-                      </div>
-                    </div>
-                    <div class="card shadow bg-transparent ">
-                        <div class="card-header card-header-stock py-3">
-                            <h5 class="text-title-stock m-0">News</h5>
-                        </div>
-                        <% @stock.news.each_value do |news| %>
-                      <div class="card flex-row card-body-stock pb-2"><%= image_tag(news[:image_src], :alt => "news feed", class: "card-img-left img-news" ) %>
-                        <div class="card-body card-body-stock">
-                          <p class="card-text text-stock-content"><small><%= news[:time] %></small></p>
-                          <p class=" text-stock-content mb-2"><%= link_to "#{news[:text]}", news[:website], class: "" %></p>
-                        </div>
-                      </div>
-                      <% end %>
-                    </div>
-                </div>
-                <div class="col-sm-4 w-100">
-                    <div class="row w-100">
-                        <div class="col-md-auto w-100">
-                            <div class="card shadow mb-5 bg-transparent">
-                                <div class="card-header card-header-stock py-3 d-flex justify-content-between ">
-                                    <h5 class="text-title-stock m-0 "> Stock Info </h5>
-                                </div>
-                                <div class="card-body card-body-stock">
-
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Symbol</strong></label><p class="text-stock"> <%= @stock.symbol %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Primary Exchange</strong></label><p class="text-stock"> <%= @stock.primary_exchange %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Country</strong></label><p class="text-stock"> <%= @stock.country %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Price Now</strong></label><p class="text-stock"> <%= "R$#{@stock.price_now}" %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Previous Close</strong></label><p class="text-stock"> <%= "R$#{@stock.previous_close}" %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Day Range</strong></label><p class="text-stock"> <%= "R$#{@stock.day_range_low} - R$#{@stock.day_range_high}" %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Year Range</strong></label><p class="text-stock"> <%= "R$#{@stock.year_range_low} - R$#{@stock.year_range_high}" %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Market Cap</strong></label><p class="text-stock"> <%= @stock.market_cap %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Volume</strong></label><p class="text-stock"> <%= @stock.volume %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">P/E Ratio</strong></label><p class="text-stock"> <%= @stock.pe_ratio %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Dividend Yield</strong></label><p class="text-stock"> <%= @stock.dividend_yield %> </p></div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="card shadow bg-transparent">
-                                <div class="card-header card-header-stock py-3">
-                                    <h5 class="text-title-stock m-0">Pointers</h5>
-                                </div>
-                                <div class="card-body card-body-stock">
-                                        <%  stock_res = calculate(@stock) %>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">Pointer</strong></label><p class="text-stock"> <%= "R$#{stock_res.before_price.round(2)} - R$#{stock_res.current_price.round(2)}" %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">MMS5</strong></label><p class="text-stock"> <%= "R$#{stock_res.mms5_before.round(2)} - R$#{stock_res.mms5_current.round(2)}" %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">MMS14</strong></label><p class="text-stock"> <%= "R$#{stock_res.mms14_before.round(2)} - R$#{stock_res.mms14_current.round(2)}" %> </p></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                         <div class="form-row">
-                                            <div class="col">
-                                                <div class='d-flex justify-content-between'><strong class="text-stock-content">IFR</strong></label><p class="text-stock"> <%= "R$#{stock_res.ifr_before.round(2)} - R$#{stock_res.ifr_current.round(2)}" %> </p></div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div id="content">
+    <div class="container-fluid mx-5">
+      <div class="btn rounded">
+        <h1 class=" text-title-stock rounded px-2" id="stock-title"> <%= @stock.name %></h1>
+      </div>
+      <div class="d-flex justify-content-end">
+      </div>
+      <div class="row mt-5">
+        <div class="col-lg-8 d-flex flex-column justify-content-between main-card-stock">
+          <div class="card card-body-stock bg-transparent">
+            <div class="card-header card-header-stock py-3">
+              <h5 class="text-title-stock font-weight-bold m-0">Last 16 Closing Values</h5>
             </div>
+            <div class="card-body card-body-stock text-center shadow mb-5">
+              <% stock_by_day = Hash[(1..@stock.array_stock.size).to_a.reverse.zip @stock.array_stock] %>
+              <% if @stock.array_stock[-1] > @stock.array_stock[-2] %>
+                <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }}, colors: ['#17c45c']  %>
+              <% else %>
+                <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }}, colors: ['#e43529']  %>
+              <% end %>
+            </div>
+          </div>
+          <div class="card shadow bg-transparent ">
+            <div class="card-header card-header-stock py-3">
+              <h5 class="text-title-stock m-0">News</h5>
+            </div>
+            <% @stock.news.each_value do |news| %>
+              <div class="card flex-row card-body-stock pb-2"><%=link_to image_tag(news[:image_src], alt: "news feed", class: "card-img-left img-news" ), news[:website] %>
+                <div class="card-body card-body-stock">
+                  <p class="card-text text-stock-content"><small><%= news[:time] %></small></p>
+                  <p class=" text-stock-content mb-2"><%= link_to "#{news[:text]}", news[:website], class: "" %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-md-auto ">
+              <div class="card shadow mb-5 bg-transparent ">
+                <div class="card-header card-header-stock py-3 d-flex justify-content-between">
+                  <h5 class="text-title-stock m-0 "> Stock Info </h5>
+                </div>
+                <div class="card-body card-body-stock">
+                  <div class="form-row">
+                    <div class="col">
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" class='d-flex justify-content-between'><strong class="text-stock-content">Symbol</strong>
+                        <p class="text-stock"> <%= @stock.symbol %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Primary Exchange</strong>
+                        <p class="text-stock"> <%= @stock.primary_exchange %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Country</strong>
+                        <p class="text-stock"> <%= @stock.country %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Price Now</strong>
+                        <p class="text-stock"> <%= "R$#{@stock.price_now}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Previous Close</strong>
+                        <p class="text-stock"> <%= "R$#{@stock.previous_close}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Day Range</strong>
+                        <p class="text-stock"> <%= "R$#{@stock.day_range_low} - R$#{@stock.day_range_high}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Year Range</strong>
+                        <p class="text-stock"> <%= "R$#{@stock.year_range_low} - R$#{@stock.year_range_high}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Market Cap</strong>
+                        <p class="text-stock"> <%= @stock.market_cap %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Volume</strong>
+                        <p class="text-stock"> <%= @stock.volume %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">P/E Ratio</strong>
+                        <p class="text-stock"> <%= @stock.pe_ratio %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Dividend Yield</strong>
+                        <p class="text-stock"> <%= @stock.dividend_yield %> </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card shadow bg-transparent">
+                <div class="card-header card-header-stock py-3">
+                  <h5 class="text-title-stock m-0">Pointers</h5>
+                </div>
+                <div class="card-body card-body-stock">
+                  <%  stock_res = calculate(@stock) %>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Pointer</strong>
+                        <p class="text-stock"> <%= "R$#{stock_res.before_price.round(2)} - R$#{stock_res.current_price.round(2)}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">MMS5</strong>
+                        <p class="text-stock"> <%= "R$#{stock_res.mms5_before.round(2)} - R$#{stock_res.mms5_current.round(2)}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">MMS14</strong>
+                        <p class="text-stock"> <%= "R$#{stock_res.mms14_before.round(2)} - R$#{stock_res.mms14_current.round(2)}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class='d-flex justify-content-between'><strong class="text-stock-content">IFR</strong>
+                        <p class="text-stock"> <%= "R$#{stock_res.ifr_before.round(2)} - R$#{stock_res.ifr_current.round(2)}" %> </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
