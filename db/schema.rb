@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_12_07_211916) do
     t.string "primary_exchange"
     t.float "price_now"
     t.float "array_stock", default: [], array: true
+    t.text "news"
   end
 
   create_table "users", force: :cascade do |t|
