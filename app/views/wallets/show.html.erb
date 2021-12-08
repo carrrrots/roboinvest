@@ -126,6 +126,17 @@
                 </div>
             </div>
         </div>
+            <div class="stocks-sample d-flex">
+              <div class="card-deck w-100 mb-4 d-flex justify-content-between">
+                <% calculate_profit(@wallet) %>
+                <div class="graph-card card card-img">
+                  <%= pie_chart({"Profit" => @wallet.profit.round(2), "Invested Money" => @wallet.invested_money.round(2)}) %>
+                  <div class="card-footer d-flex justify-content-center">
+                    <small class="text-muted"><%= @wallet.name %></small>
+                  </div>
+                </div>
 
+              </div>
+            </div>
     </div>
 </div>

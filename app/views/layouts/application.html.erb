@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -38,14 +37,14 @@
       <%= render "shared/navbar_home" %>
       <%= yield %>
       <%= render "shared/footer" %>
+    <% elsif current_page?(about_path) %>
+        <%= yield %>
+        <%= render "shared/footer" %>
     <% elsif current_page?(wallets_path) %>
       <div class="sidebar-place">
         <%= render "shared/navbar" %>
         <%= yield %>
       </div>
-    <% elsif current_page?(about_path) %>
-      <%= yield %>
-      <%= render "shared/footer" %>
     <% elsif current_page?(stock_path(1)) %>
       <div class="sidebar-place">
         <%= render "shared/navbar" %>
