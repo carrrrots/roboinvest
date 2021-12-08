@@ -4,6 +4,7 @@ require 'nokogiri'
 class Stock < ApplicationRecord
   before_save :get_data_from_scraping
   before_save :get_previous_close_to_array
+  serialize :news, Hash
 
   REGEXG = /([0-9]*\.[0-9]+)/
   COUNTRY = /[a-zA-Z]+/
@@ -13,7 +14,15 @@ class Stock < ApplicationRecord
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)
     self.name = html_doc.css('.zzDege').text.strip
-    self.description = 'todo'
+    self.news = {} if news.length > 5
+    [0, 1, 2, 3, 4].each do |num|
+      news[:"news_#{num + 1}"] = {
+        time: "#{html_doc.css('.sfyJob')[num].text.strip} · #{html_doc.css('.Adak')[num].text.strip}",
+        text: html_doc.css('.Yfwt5')[num].text.strip,
+        website: html_doc.xpath('//div[@class="z4rs2b"]/a/@href')[num].value,
+        image_src: html_doc.css('.Z4idke')[num]['src']
+      }
+    end
     self.country = 'Brazil'
     self.price_now = html_doc.css('.YMlKec').css('.fxKbKc').text.strip.scan(REGEXG)[0].join.to_f
     self.previous_close = html_doc.css('.P6K39c')[0].text.strip.scan(REGEXG)[0].join.to_f
@@ -73,3 +82,9 @@ end
   #  self.profit_margin = stock["ProfitMargin"]
   #  self.analyst_target_price = stock["AnalystTargetPrice"]
 # end
+      #news << {
+       # time: "#{html_doc.css('.sfyJob')[num].text.strip} · #{html_doc.css('.Adak')[num].text.strip}",
+       # text: html_doc.css('.Yfwt5')[num].text.strip,
+       # website: html_doc.xpath('//div[@class="z4rs2b"]/a/@href')[num].value,
+       # image_src: html_doc.css('.Z4idke')[num]['src']
+     # }
