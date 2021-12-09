@@ -37,10 +37,10 @@
           <li class="mb-4 mt-5">
             <% if user_signed_in? %>
               <%= link_to destroy_user_session_path, method: :delete do%>
-                <i class="fas fa-user-circle me-2"></i>Logout
+                <i class="fas fa-user-circle me-5"></i>Logout
               <%end%>
             <% else %>
-              <a href="/users/sign_in"><i class="fas fa-user-circle me-2"></i>Login</a></li>
+              <a href="/users/sign_in"><i class="fas fa-user-circle me-5"></i>Login</a></li>
           <% end %>
         </li>
       </ul>

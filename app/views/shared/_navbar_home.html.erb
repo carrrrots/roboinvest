@@ -12,11 +12,11 @@
             html: {class: "form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"}
             ) do |f| %>
             <%= f.text_field :query,
-                  class: "form-control rounded-pill",
+                  class: "form-control rounded",
                   id: "search-bar",
                   placeholder: "Find Stock"
                 %>
-                <%= f.submit "Stock", class: "btn btn-light action-button text-white" %>
+                <%= f.submit "Stock", class: "btn btn-light action-button text-white shadow" %>
             <% end %>
       </div>
     </div>
