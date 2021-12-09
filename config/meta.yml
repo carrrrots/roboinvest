@@ -1,0 +1,6 @@
+
+meta_product_name: "Roboinvest"
+meta_title: "RoboInvest - Quit outsourcing your investments."
+meta_description: "An easier way to manage and learn about investments"
+meta_image: "stock-img.jpg" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
