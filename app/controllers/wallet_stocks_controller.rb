@@ -7,7 +7,8 @@ class WalletStocksController < ApplicationController
     if @wallet_stock.save
       redirect_to @wallet
     else
-      p @wallet_stock.errors.full_messages
+      @show_collapse = true
+      render "wallets/show"
     end
   end
 

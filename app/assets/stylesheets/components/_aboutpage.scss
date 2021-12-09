@@ -3,22 +3,30 @@
 }
 .site-heading {
     margin-top: 15%;
-    text-transform: uppercase;
     line-height: 1;
-    font-family: 'Raleway', sans-serif;
+    font-family: $font-pop;
+    color: #7ECA9C;
 }
 .site-heading .site-heading-lower {
     font-size: 5rem;
     font-weight: 100;
     line-height: 4rem;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
 }
 .site-heading .site-heading-upper {
     display: block;
     font-size: 2rem;
     font-weight: 800;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
 }
 .text-primary {
-  color: #e6a756!important;
+  color: white!important;
+}
+#title-about-color {
+  color: #7ECA9C;
+  text-transform: uppercase;
 }
 .about-heading-img {
   opacity: .7;
@@ -29,46 +37,54 @@
 }
 .card-about-company {
     border-radius: 0.50rem!important;
-
-    background-color: hsla(0,0%,100%,.70);
+    color: white;
+    background-color: #1C1427;
     display: flex;
     flex-direction: column;
     align-self: center;
     width: 60rem;
     margin-bottom: 5%;
+    font-weight: lighter;
+    font-family: $font-mont;
 }
 .card-about-team {
     border-radius: 0.25rem!important;
-    background-color: hsla(0,0%,100%,.70);
+    color: white;
+    background-color: #1C1427;
     align-self: center;
     width: 80rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-bottom: 5rem;
+    font-weight: lighter;
+    font-family: $font-mont;
 
 }
 .img-about-page {
   border-radius: 50%;
   margin-left: 30%;
   border-color: #1c1427b2;
-
   box-shadow: 0 0 10px #1C1427;
 }
 .item-people {
-  background-color: #1c1427d3;
-  box-shadow: 0 0 1em #1C1427;
+  background-color: #0e0a14d1;
   margin: 15px;
   border-radius: 5%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 20px;
+  min-height: 28rem;
   min-width: 10rem;
   max-width: 15rem;
+  position: relative;
 }
 .perfil-junto {
+  margin-left: 50px;
   display: flex;
   font-size: 0.8rem;
+  font-weight: lighter;
+  font-family: $font-mont;
   justify-content: space-between;
 }
 
@@ -81,5 +97,12 @@
   justify-content: center;
 }
 .social-team {
-  color: #e6a756;
+  padding:0.3rem;
+  color: #7ECA9C;
+}
+.social-team-about {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  left: 0;
 }

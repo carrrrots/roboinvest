@@ -2,21 +2,24 @@
   <div class="container-fluid">
       <%= link_to root_path, class: "navbar-brand" do %>
         <div class=" d-inline-flex justify-content-center align-items-center">
-            <i class="fas fa-dice-d20 fa-3x mr-2"></i><h2 class="mb-0">RoboInvest</h2>
+            <i class="fas fa-dice-d20 fa-3x me-2"></i><h2 class="mb-0">RoboInvest</h2>
         </div>
       <% end %>
     <div>
-      <div class="collapse navbar-collapse" id="navcol-1">
+      <div class="collapse navbar-collapse d-flex" id="navcol-1">
+        <div>
         <%= form_with(url: search_path,
             method: "get",
-            html: {class: "form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"}
+            html: {class: "form-inline d-none d-sm-inline-block me-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"}
             ) do |f| %>
             <%= f.text_field :query,
-                  class: "form-control rounded-pill",
+                  class: "form-control rounded",
                   id: "search-bar",
                   placeholder: "Find Stock"
                 %>
-                <%= f.submit "Stock", class: "btn btn-light action-button text-white" %>
+                </div>
+                <div>
+                <%= f.submit "Stock", class: "btn btn-light action-button text-white shadow" %></div>
             <% end %>
       </div>
     </div>
