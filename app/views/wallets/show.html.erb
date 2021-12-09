@@ -1,137 +1,237 @@
 <div class="d-flex flex-column justify-content-center w-100" id="content-wrapper">
   <div id="content">
-
-    <!--NAVBAR SEARCH-->
-    <nav class="navbar navbar-light navbar-expand topbar static-top w-75">
-      <div class="container-fluid">
-        <div class="d-none d-sm-block topbar-divider"></div>
-        <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
-              data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"> <%= current_user.nickname %> </span><img
-              class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
-        </div>
-      </div>
-    </nav>
-
     <!--WALLET INIiT-->
-    <div class="wallet-wrapper container-fluid">
-      <h3 class="wallet-heading mb-4 d-flex justify-content-center"> <%= @wallet.name %> </h3>
-        <div class="balance-card card">
-          <div class="card-body">
-            <div class="table-responsive table my-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-              <table class="whole-table table" id="dataTable">
-                <thead>
-                  <tr class="table-title">
-                    <th class="stock-table-header">Date of Purchase</th>
-                    <th class="stock-table-header">Batch</th>
-                    <th class="stock-table-header">Stock</th>
-                    <th class="stock-table-header">Price per stock</th>
-                    <th class="stock-table-header">Batch Cost</th>
-                    <th class="stock-table-header">Price to Overcome</th>
-                    <th class="stock-table-header">Year Range</th>
-                    <th class="stock-table-header"  id="stock-price">Price Now</th>
-                    <th class="stock-table-header">Average</th>
-                    <th class="stock-table-header">Appreciation</th>
-                    <th class="stock-table-header">Balance</th>
-                    <th class="stock-table-header">Profit</th>
-                    <th class="stock-table-header">Status</th>
-                  </tr>
-                </thead>
-                <tbody class="balance-body">
-                  <% @wallet.wallet_stocks.each do |wallet_stock| %>
-                    <tr id="stock-row">
-                      <%  stock_res = calculate(wallet_stock.stock) %>
-                      <td class="stock-infos"> <%= wallet_stock.date %> </td>
-                      <td class="stock-infos"><%= wallet_stock.number_of_stock %> </td>
-                      <td  class="stock-infos p-3" id="stock-symbol"><i class="arrow-up fas fa-angle-double-up"></i><%= wallet_stock.stock.symbol %> </td>
-                      <td class="stock-infos"><%= wallet_stock.investment_stock %> </td>
-                      <% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>
-                      <% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>
-                      <td class="stock-infos"><%= batch.round(2) %> </td>
-                      <td class="stock-infos"><%= (batch/wallet_stock.number_of_stock).round(2) %> </td>
-                      <td class="stock-infos">
-                        <div class="d-flex flex-column">
-                          <p><%= wallet_stock.stock.year_range_high %></p>
-                            <% average_year = (wallet_stock.stock.year_range_high + wallet_stock.stock.year_range_low)/2 %>
-                          <p><%= average_year.round(2) %></p>
-                          <p><%= wallet_stock.stock.year_range_low %></p>
-                        </div>
-                      </td>
-                      <td class="stock-infos" id="stock-price">
-                      <%= wallet_stock.stock.price_now %> </td>
-                      <td class="stock-infos"><%= wallet_stock.stock.price_now <= (average_year) + 2/100 ? 'Cheap' : 'Expensive' %> </td>
-                        <% price_total = (wallet_stock.stock.price_now*wallet_stock.number_of_stock) %>
-                        <% balance = price_total - ((price_total*0.0325/100)+2.49) %>
-                      <td class="stock-infos"><%= wallet_stock.number_of_stock != 0 ? (((balance/batch) - 1)*100).round(2)  : 0 %>%</td>
-                      <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? balance.round(2) : 0 %> </td>
-                      <td class="stock-infos"><%= wallet_stock.investment_stock > 0 ? (balance - batch).round(2) : 0 %> </td>
-                      <td>
-                        <div class="high-low d-flex">
-                          <div class="sugestion-container d-flex flex-column">
-                          <div class="sugestion d-flex">
-                            <button type="button" class="btn btn-light bg-transparent rounded-pill" data-toggle="tooltip" data-placement="right" title="comprar ou vender?">
-                              <% if stock_res.mms5_status = "Down" && stock_res.mms14_status = "Down"  && wallet_stock.stock.price_now < stock_res.current_price %>
-                                <p id="sell"> <%= "Sell" %> </p>
-                              <% elsif wallet_stock.stock.price_now <= stock_res.current_price %>
-                                <p id="going-down"> <%= "Going Down" %> </p>
-                              <% else %>
-                                <p id="going-up"> <%= "Going Up" %> </p>
-                              <% end %>
-                            </button>
-                          </div>
-
-                          <div class="d-flex align-items-center">
-                            <p id="trend"><%= stock_res.mms14_status = "Down" ? "Downtrend" : "-" %></p>
-                          </div>
-                          </div>
-                        </div>
-
-                      </td>
-                      <td class="stock-infos">
-                        <%= link_to wallet_stock, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                          <i class="fas fa-trash-alt color-trash"></i>
-                        <%end%>
-                      </td>
-                    </tr>
-                  <% end %>
-              </table>
+    <div class="wallet-wrapper container-fluid ">
+      <div class="stocks-sample d-flex justify-content-between">
+        <div class="card-deck mb-4" id="pie-chart">
+          <% calculate_profit(@wallet) %>
+          <div class="card bg-transparent w-100 border-transparent">
+            <div class="card-body card-body-stock text-center shadow me-5">
+              <% donut_data = {"Profit"=> @wallet.profit.round(2), "Invested Money"=> @wallet.invested_money.round(2)} %>
+              <%= pie_chart donut_data,donut: true, adapter: "google", library: { backgroundColor: { fill:'transparent' }, legend: {position: 'bottom', textStyle: {color: '#7E8B97'}}, pieSliceBorderColor: "transparent", title: "Financial Assests", titleTextStyle: {color: '#b8bec5', fontName: "Poppins", fontSize: 14} }, colors: ['#17c45c',"#e43529"]  %>
             </div>
           </div>
-         </div>
-                <div class="card-collapse card-header">
-                  <p class="m-0"><button class="btn-text btn btn-success shadow data-bs-toggle" type="button" data-toggle="collapse" data-toggle="true"
-                    data-target="#addStock" aria-expanded="false" aria-controls="addStock">ADD STOCK +</button>
-                  </p>
-                </div>
-
-
-               <div class="collapse" id="addStock">
-                <div class="justify-content-center card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                          <%= simple_form_for([@wallet, @wallet_stock]) do |f| %>
-                            <%= f.input :date, input_html:{class: "input-fields"}  %>
-                            <%= f.input :number_of_stock, input_html:{class: "input-fields"}  %>
-                            <%= f.association :stock, collection: Stock.order(:name), input_html:{class: "input-fields"}  %>
-                            <%= f.input :investment_stock, input_html:{class: "input-fields"}  %>
-                            <%= f.submit class: "btn-add-stock",  value: "Add to Wallet" %>
-                          <% end %>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
         </div>
-            <div class="stocks-sample d-flex">
-              <div class="card-deck w-100 mb-4 d-flex justify-content-between">
-                <% calculate_profit(@wallet) %>
-                <div class="graph-card card card-img">
-                  <%= pie_chart({"Profit" => @wallet.profit.round(2), "Invested Money" => @wallet.invested_money.round(2)}) %>
-                  <div class="card-footer d-flex justify-content-center">
-                    <small class="text-muted"><%= @wallet.name %></small>
-                  </div>
+        <div class="wallet-heading justify-center">
+          <h3 class="welcome wallet-heading2 mb-4"> <%= @wallet.name %> <i class="fas fa-wallet ms-2 mt-2"></i></h3>
+        </div>
+      </div>
+      <div class="container card-wallet">
+        <div class="row text-title-stock p-3 justify-content-between">
+          <div class="col">
+            <h4 class='text-title-stock'>Stock</h4>
+          </div>
+          <div class="col">
+            <h4 class='text-title-stock'>Batch</h4>
+          </div>
+          <div class="col">
+            <h4 class='text-title-stock'>Price Now</h4>
+          </div>
+          <div class="col">
+            <h4 class='text-title-stock'>Profit</h4>
+          </div>
+          <div class="col">
+            <h4 class='text-title-stock'>Status</h4>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="container text-stock">
+        <% @wallet.wallet_stocks.each do |wallet_stock| %>
+          <%  stock_res = calculate(wallet_stock.stock) %>
+          <% wallet_stock_id = (0...5).map { ('a'..'z').to_a[rand(26)] }.join %>
+          <% wallet_stock.batch_cost = wallet_stock.investment_stock * wallet_stock.number_of_stock %>
+          <% batch = (wallet_stock.batch_cost+((wallet_stock.batch_cost*0.0325)/100)+2.49) %>
+          <% price_total = (wallet_stock.stock.price_now*wallet_stock.number_of_stock) %>
+          <% balance = price_total - ((price_total*0.0325/100)+2.49) %>
+          <div class="row p-3 justify-content-between card-wallet">
+            <div data-bs-toggle="collapse" data-bs-target="#<%= wallet_stock_id  %>" aria-expanded="false" aria-controls="<%= wallet_stock_id  %>" class="col">
+              <h6 class='text-wallet-show-content btn symbol-hover'>
+                <% if wallet_stock.stock.array_stock[-1] > wallet_stock.stock.array_stock[-2] %>
+                  <i class="arrow-up fas fa-angle-double-up"></i>
+                <% else %>
+                  <i class="arrow-down fas fa-angle-double-down"></i>
+                <% end %>
+                <%= wallet_stock.stock.symbol %></h6>
+            </div>
+            <div class="col">
+              <h6 class='text-wallet-show-content'><%= wallet_stock.number_of_stock %></h6>
+            </div>
+            <div class="col">
+              <h6 class='text-wallet-show-content' id='price-now'>
+                <% if wallet_stock.stock.array_stock[-1] > wallet_stock.stock.array_stock[-2] %>
+                  <i class="arrow-up fas fa-angle-up"></i>
+                <% else %>
+                  <i class="arrow-down fas fa-angle-down"></i>
+                <% end %>
+                R$ <%= wallet_stock.stock.price_now %></h6>
+            </div>
+            <div class="col">
+              <h6 class='text-wallet-show-content'>R$ <%= wallet_stock.investment_stock > 0 ? (balance - batch).round(2) : 0 %></h6>
+            </div>
+            <div class="col d-flex">
+              <div class='flex-column text-center'>
+                <div>
+                  <% if stock_res.mms5_status = "Down" && stock_res.mms14_status = "Down"  && wallet_stock.stock.price_now < stock_res.current_price %>
+                    <h6 class='text-wallet-show-content'><%= "Sell" %></h6>
+                  <% elsif wallet_stock.stock.price_now <= stock_res.current_price %>
+                    <h6 class='text-wallet-show-content'><%= "Going Down" %></h6>
+                  <% else %>
+                    <h6 class='text-wallet-show-content'><%= "Going Up" %></h6>
+                  <% end %>
                 </div>
-
+                <div>
+                  <small id='trend'><%= stock_res.mms14_status = "Down" ? "Downtrend" : "-" %></small>
+                </div>
+              </div>
+              <div class="ms-5">
+                <%= link_to wallet_stock, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <i class="fas fa-trash-alt color-trash"></i>
+                <%end%>
               </div>
             </div>
+          </div>
+          <hr>
+          <div class="container text-stock-content">
+            <div class="row drop">
+              <div class="col-md-12">
+                <div class="collapse" id="<%= wallet_stock_id  %>">
+                  <div class='d-flex justify-content-between my-3 '>
+                    <div class="card bg-transparent w-100 border-transparent">
+                      <div class="card-body card-body-stock text-center shadow me-5">
+                        <% stock_by_day = Hash[(1..wallet_stock.stock.array_stock.size).to_a.reverse.zip wallet_stock.stock.array_stock] %>
+                        <% if wallet_stock.stock.array_stock[-1] > wallet_stock.stock.array_stock[-2] %>
+                          <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }, width: 800, height: 400, title: "Last 16 Closing Values", titleTextStyle: {color: '#b8bec5', fontName: "Poppins"} }, colors: ['#17c45c']  %>
+                        <% else %>
+                          <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }, width: 800, height: 400, title: "Last 16 Closing Values", titleTextStyle: {color: '#b8bec5', fontName: "Poppins"} }, colors: ['#e43529']  %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="row">
+                        <div class="col-md-auto ">
+                          <div class="card shadow mb-5 card-wallet">
+                            <div class="card-header card-header-stock py-3 d-flex justify-content-between">
+                              <%= link_to "Stock Info", "/stocks/#{wallet_stock.stock.id}", class:"btn text-title-stock m-0 ", id:"stock-info" %>
+                            </div>
+                            <div class="card-body card-body-stock">
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">Date Purchased</strong>
+                                    <p class="text-stock"> <%= wallet_stock.date %> </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">Price Per Stock</strong>
+                                    <p class="text-stock">R$ <%= wallet_stock.investment_stock %> </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">Batch Cost</strong>
+                                    <p class="text-stock">R$ <%= batch.round(2) %> </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">Price to Overcome</strong>
+                                    <p class="text-stock">R$ <%= (batch/wallet_stock.number_of_stock).round(2) %> </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">Year Average</strong>
+                                    <p class="text-stock">
+                                      <% average_year = (wallet_stock.stock.year_range_high + wallet_stock.stock.year_range_low)/2 %>
+                                      <span>R$<%= average_year.round(2) %></span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'>
+                                    <strong class="text-stock-content">
+                                      Price Now
+                                    </strong>
+                                    <p class="text-stock">
+                                      <% if wallet_stock.stock.array_stock[-1] > wallet_stock.stock.array_stock[-2] %>
+                                        <i class="arrow-up fas fa-angle-up"></i>
+                                      <% else %>
+                                        <i class="arrow-down fas fa-angle-down"></i>
+                                      <% end %>
+                                      R$<%= wallet_stock.stock.price_now %>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">% Average</strong>
+                                    <p class="text-stock"><%= wallet_stock.stock.price_now <= (average_year) + 2/100 ? 'Cheap' : 'Expensive' %></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">Appreciation</strong>
+                                    <p class="text-stock"><%= wallet_stock.number_of_stock != 0 ? (((balance/batch) - 1)*100).round(2)  : 0 %>%</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class='d-flex justify-content-between'><strong class="text-stock-content">Balance</strong>
+                                    <p class="text-stock">R$<%= wallet_stock.investment_stock > 0 ? balance.round(2) : 0 %> </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-collapse card-header border-transparent">
+        <p class="m-0"><button class="btn-text btn shadow data-bs-toggle" type="button"  data-bs-toggle="collapse" data-bs-target="#addStock" aria-expanded="false" aria-controls="addStock">ADD STOCK +</button>
+        </p>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="collapse p-3 card-wallet text-stock shadow" id="addStock">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <%= simple_form_for([@wallet, @wallet_stock]) do |f| %>
+                  <%= f.input :date, input_html:{class: "input-fields my-1"}  %>
+                  <%= f.input :number_of_stock, input_html:{class: "input-fields my-1"}  %>
+                  <%= f.association :stock, collection: Stock.order(:name), input_html:{class: "input-fields my-1"}  %>
+                  <%= f.input :investment_stock, input_html:{class: "input-fields my-1"}  %>
+                  <%= f.submit class: "btn-text my-1",  value: "Add to Wallet" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

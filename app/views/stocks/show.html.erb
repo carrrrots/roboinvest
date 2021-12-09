@@ -45,7 +45,7 @@
                 <div class="card-body card-body-stock">
                   <div class="form-row">
                     <div class="col">
-                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" class='d-flex justify-content-between'><strong class="text-stock-content">Symbol</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Company symbol." class='d-flex justify-content-between'><strong class="text-stock-content">Symbol</strong>
                         <p class="text-stock"> <%= @stock.symbol %> </p>
                       </div>
                     </div>
@@ -53,7 +53,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Primary Exchange</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Listed exchange for this security." class='d-flex justify-content-between'><strong class="text-stock-content">Primary Exchange</strong>
                         <p class="text-stock"> <%= @stock.primary_exchange %> </p>
                       </div>
                     </div>
@@ -61,7 +61,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Country</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Country where the company is from." class='d-flex justify-content-between'><strong class="text-stock-content">Country</strong>
                         <p class="text-stock"> <%= @stock.country %> </p>
                       </div>
                     </div>
@@ -69,15 +69,22 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Price Now</strong>
-                        <p class="text-stock"> <%= "R$#{@stock.price_now}" %> </p>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Current price of the stock." class='d-flex justify-content-between'><strong class="text-stock-content">Price Now</strong>
+                        <p class="text-stock">
+                          <% if @stock.array_stock[-1] > @stock.array_stock[-2] %>
+                            <i class="arrow-up fas fa-angle-up"></i>
+                          <% else %>
+                            <i class="arrow-down fas fa-angle-down"></i>
+                          <% end %>
+                          <%= "R$#{@stock.price_now}" %>
+                        </p>
                       </div>
                     </div>
                   </div>
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Previous Close</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The last closing price" class='d-flex justify-content-between'><strong class="text-stock-content">Previous Close</strong>
                         <p class="text-stock"> <%= "R$#{@stock.previous_close}" %> </p>
                       </div>
                     </div>
@@ -85,7 +92,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Day Range</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The difference between the high and low prices over the day, goes to 0 when market closes." class='d-flex justify-content-between'><strong class="text-stock-content">Day Range</strong>
                         <p class="text-stock"> <%= "R$#{@stock.day_range_low} - R$#{@stock.day_range_high}" %> </p>
                       </div>
                     </div>
@@ -93,7 +100,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Year Range</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The difference between the high and low prices over the past 52 weeks" class='d-flex justify-content-between'><strong class="text-stock-content">Year Range</strong>
                         <p class="text-stock"> <%= "R$#{@stock.year_range_low} - R$#{@stock.year_range_high}" %> </p>
                       </div>
                     </div>
@@ -101,7 +108,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Market Cap</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="A valuation method that multiplies the price of a company's stock by the total number of outstanding shares." class='d-flex justify-content-between'><strong class="text-stock-content">Market Cap</strong>
                         <p class="text-stock"> <%= @stock.market_cap %> </p>
                       </div>
                     </div>
@@ -109,7 +116,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Volume</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The average number of shares traded each day over the past 30 days" class='d-flex justify-content-between'><strong class="text-stock-content">Volume</strong>
                         <p class="text-stock"> <%= @stock.volume %> </p>
                       </div>
                     </div>
@@ -117,7 +124,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">P/E Ratio</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The ratio of current share price to trailing twelve month EPS that signals if the price is high or low compared to other stocks" class='d-flex justify-content-between'><strong class="text-stock-content">P/E Ratio</strong>
                         <p class="text-stock"> <%= @stock.pe_ratio %> </p>
                       </div>
                     </div>
@@ -125,7 +132,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Dividend Yield</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The ratio of annual dividend to current share price that estimates the dividend return of a stock" class='d-flex justify-content-between'><strong class="text-stock-content">Dividend Yield</strong>
                         <p class="text-stock"> <%= @stock.dividend_yield %> </p>
                       </div>
                     </div>
@@ -140,7 +147,7 @@
                   <%  stock_res = calculate(@stock) %>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">Pointer</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Price from yesterday and the day before." class='d-flex justify-content-between'><strong class="text-stock-content">Pointer</strong>
                         <p class="text-stock"> <%= "R$#{stock_res.before_price.round(2)} - R$#{stock_res.current_price.round(2)}" %> </p>
                       </div>
                     </div>
@@ -148,7 +155,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">MMS5</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The average of the last 5 days from yesterday and the last 5 from the day before." class='d-flex justify-content-between'><strong class="text-stock-content">MMS5</strong>
                         <p class="text-stock"> <%= "R$#{stock_res.mms5_before.round(2)} - R$#{stock_res.mms5_current.round(2)}" %> </p>
                       </div>
                     </div>
@@ -156,7 +163,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">MMS14</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="The average of the last 14 days from yesterday and the last 14 from the day before." class='d-flex justify-content-between'><strong class="text-stock-content">MMS14</strong>
                         <p class="text-stock"> <%= "R$#{stock_res.mms14_before.round(2)} - R$#{stock_res.mms14_current.round(2)}" %> </p>
                       </div>
                     </div>
@@ -164,7 +171,7 @@
                   <hr>
                   <div class="form-row">
                     <div class="col">
-                      <div class='d-flex justify-content-between'><strong class="text-stock-content">IFR</strong>
+                      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Relative Strength Index from yesterday and the day before." class='d-flex justify-content-between'><strong class="text-stock-content">IFR</strong>
                         <p class="text-stock"> <%= "R$#{stock_res.ifr_before.round(2)} - R$#{stock_res.ifr_current.round(2)}" %> </p>
                       </div>
                     </div>
