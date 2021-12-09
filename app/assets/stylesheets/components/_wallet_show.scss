@@ -20,11 +20,18 @@
 
 
 .wallet-heading {
-  font-family: 'Nunito', sans-serif;
+  width: 100%;
+  font-family: $font-mont;
   color: white;
   font-weight: lighter;
   font-size: 40px;
-  margin-left: 15px;
+  margin-right: 10rem;
+  margin-top: 10rem;
+}
+.wallet-heading2 {
+  font-family: $font-mont;
+  font-weight: 300;
+  font-size: 40px;
 }
 
 th {
@@ -56,24 +63,23 @@ th {
   background: rgb(212, 12, 12);
 }
 
-.stock-infos {
-  align-items: center;
-  height: 50px;
-
+#stock-info {
+  padding: 0.4rem;
+  font-size: 1.4rem;
+  &:hover {
+    background: #fff;
+    color: #7eca7e !important;
+    padding: 0.4rem;
+  }
 }
 
-.stock-table-header {
-  color: #e6a756;
-  font-family: 'Nunito', sans-serif;
-  font-weight: lighter;
-  font-size: 1rem;
-}
-
-.stock-infos {
-  font-family: 'Nunito', sans-serif;
-  font-weight: bold;
-  font-size: 15px;
-
+.symbol-hover {
+  padding: 0.4rem;
+    &:hover {
+    background: #fff;
+    color: #7eca7e !important;
+    padding: 0.4rem;
+  }
 }
 
 #stock-symbol {
@@ -89,13 +95,18 @@ th {
 }
 
 .btn-text {
-  font-family: 'Nunito', sans-serif;
+  font-family: $font-mont;
   font-size: 12px;
-  color: black;
+  color: #e4e4e4;
   font-weight: bold;
   border-radius: 3px;
-  background-color: green;
+  background-color: #17c45c;
   border-style: hidden;
+      &:hover {
+    background: #fff;
+    color: #7eca7e !important;
+
+  }
 }
 
 .card-collapse {
@@ -104,21 +115,26 @@ th {
 }
 
 .arrow-up {
-  color: green;
+  color: #17c45c;
   margin-right: 3px;
 }
 
+.arrow-down {
+  color: #e43529;
+  margin-right: 3px;
+}
 .input-fields {
   border-radius: 3px;
+  background-color: #b8bec5;
 }
 
 .btn-add-stock {
   font-family: 'Nunito', sans-serif;
   font-size: 12px;
-  color: black;
+  color: #b8bec5;
   font-weight: bold;
   border-radius: 3px;
-  background-color: green;
+  background-color: #17c45c;
   border-style: hidden;
 }
 
@@ -149,4 +165,46 @@ th {
   padding: 3px;
   color: red;
   font-weight: bold;
+}
+.card-wallet {
+  background-color: #1C1427;
+  border: 0px;
+}
+.dropdown-card {
+  background-color: #40394A;
+}
+
+#trend {
+  color: #e43529;
+  font-weight: 300;
+  font-family: $font-mont;
+  font-size: 0.8rem;
+}
+.text-wallet-show-content {
+ color: #b8bec5 !important;
+ font-family: $font-mont !important;
+ font-weight: 500 !important;
+ font-size: .95rem !important;
+}
+
+.border-transparent{
+  border-color: transparent;
+}
+
+#addStock {
+  width: 50%;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+#pie-chart {
+  width: 50%;
 }

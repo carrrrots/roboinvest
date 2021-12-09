@@ -9,16 +9,15 @@ body {
 }
 
 .wallet-card {
-  background-color: #282d32;
+  background-color: #130e1a;
   border-color: transparent;
-  width: 70vw;
 }
 
 .wallet-title {
   color: white;
-  background-color: #282d32af;
+  background-color: #1C1427;
   border-radius: 3px;
-  width: 100%;
+  width: 68.795vw;
   position:absolute;
 }
 
@@ -47,13 +46,11 @@ body {
   font-size: 50px;
   color:white;
   font-weight: lighter;
+  margin-left: 30%;
 }
 
 #column-title {
-  color:#e6a756;
-  font-weight: lighter;
   border-color: transparent;
-  font-size: 1rem;
 }
 
 thead {
@@ -62,20 +59,21 @@ thead {
 }
 
 .text-left {
-  background-color: #ffffffa9;
+  background-color: #00000000 !important;
   font-family: Roboto, sans-serif;
   font-weight: bold;
+
 }
 #name-wallet {
-  color: black;
+  color: #dce0ee;
 }
 #add-walcolor {
-  color: #11864d;
+  color: #17c45c;
 }
 
 .table-info {
-  background-color: #ffffffa9;
-  font-family: Roboto, sans-serif;
+  background-color: #00000000 !important;
+  border-color: #3F4853;
 }
 
 .search-row {
@@ -99,5 +97,13 @@ thead {
   border-color: transparent;
 }
 .color-trash {
-  color: rgba(255, 0, 0, 0.622);
+  color: #e43529;
+}
+.table-body{
+  border-top-style: hidden;
+  border-color: #3F4853;
+}
+#wallet-table{
+  border-top-style: hidden;
+  background-color: #00000000 !important;
 }

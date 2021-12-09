@@ -1,13 +1,13 @@
 <div>
   <div class='wallet-container' id="content">
     <div class="container-fluid bg-transparent col-md">
-      <div class="welcome d-flex justify-content-center mb-5 mt-3"> <%= current_user.nickname%> Wallets <i class="fas fa-wallet ml-2 mt-2"></i>
+      <div class="welcome d-flex mb-5 mt-5 wallet-heading2"> <%= current_user.nickname%> Wallets <i class="fas fa-wallet ms-2 mt-2"></i>
       </div>
       <div class="wallet-title card-header py-4 mb-2">
         <div class="wallet-card card shadow">
           <div class="card-body">
-            <div class="row search-row d-flex justify-content-between">
-              <div class="col-lg-3 text-nowrap bg-primary">
+            <div class="search-row d-flex justify-content-between">
+              <div class="text-nowrap">
                 <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                   <label>&nbsp;
                     <select class="form-control form-control-sm custom-select custom-select-sm" id="walletfilterselect">
@@ -19,9 +19,9 @@
                 </div>
               </div>
               <%= link_to new_wallet_path, id:"add-walcolor" do %>
-                <p> Add Wallet <i class="fas fa-plus"></i></p>
+                <span> Add Wallet <i class="fas fa-plus"></i></span>
               <% end %>
-              <div class="col-md-3 bg-danger">
+              <div>
                 <div class="text-md-right dataTables_filter" id="dataTable_filter"><label>
                     <input id="walletfiltersearch" type="search" action= "/wallets" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search" > </label>
                 </div>
@@ -29,25 +29,25 @@
             </div>
           </div>
         </div>
-        <div class="table-responsive table mt-3 " id="dataTable" role="grid" aria-describedby="dataTable_info">
+        <div class="table-responsive table mt-3 table-body" id="dataTable" role="grid" aria-describedby="dataTable_info">
           <table class="table my-0" id="dataTable">
             <thead>
-              <tr class="column-title text-lg-center">
-                <th id="column-title">Name</th>
-                <th id="column-title">Invested Money <i class="fas fa-coins ml-2"></i></th>
-                <th id="column-title">Profit <i class="fas fa-chart-line ml-2"></i></th>
-                <th id="column-title">Creation Date <i class="far fa-calendar-alt ml-2"></i></th>
+              <tr class="column-title text-lg text-stock">
+                <th id="column-title" class="text-stock"></th>
+                <th id="column-title" class="text-stock">Invested Money <i class="fas fa-coins ms-2"></i></th>
+                <th id="column-title" class="text-stock">Profit <i class="fas fa-chart-line ms-2"></i></th>
+                <th id="column-title" class="text-stock">Creation Date <i class="far fa-calendar-alt ms-2"></i></th>
               </tr>
             </thead>
-            <tbody id="wallet-table">
+            <tbody id="wallet-table" class='table-body'>
               <% @wallets.each do |wallet| %>
                 <% calculate_profit(wallet) %>
-                <tr class="text-lg-center">
-                  <td class="text-left"><img class="rounded-circle mr-2" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet, id:"name-wallet" %> </td>
-                  <td class="table-info">$<%= wallet.invested_money.round(2) %></td>
-                  <td class="table-info">$<%= wallet.profit.round(2) %></td>
-                  <td class="table-info"><%= wallet.created_at.strftime("%m/%d/%y") %></td>
-                  <td class="table-info"><%= link_to wallet, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <tr class="text-lg">
+                  <td class="text-left"><img class="rounded-circle me-2 ms-3" width="30" height="30" src= <%=wallet.img_url%>> <%= link_to wallet.name, wallet, id:"name-wallet", class:'text-title-stock' %> </td>
+                  <td class="table-info text-stock-content">$<%= wallet.invested_money.round(2) %></td>
+                  <td class="table-info text-stock-content">$<%= wallet.profit.round(2) %></td>
+                  <td class="table-info text-stock-content"><%= wallet.created_at.strftime("%m/%d/%y") %></td>
+                  <td class="table-info text-stock-content"><%= link_to wallet, method: :delete, data: { confirm: 'Are you sure?' } do %>
                       <i class="fas fa-trash-alt color-trash"></i>
                     <%end%>
                   </td>
