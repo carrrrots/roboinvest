@@ -101,9 +101,9 @@
                       <div class="card-body card-body-stock text-center shadow me-5">
                         <% stock_by_day = Hash[(1..wallet_stock.stock.array_stock.size).to_a.reverse.zip wallet_stock.stock.array_stock] %>
                         <% if wallet_stock.stock.array_stock[-1] > wallet_stock.stock.array_stock[-2] %>
-                          <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }, width: 800, height: 400, title: "Last 16 Closing Values", titleTextStyle: {color: '#b8bec5', fontName: "Poppins"} }, colors: ['#17c45c']  %>
+                          <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }, width: 750, height: 400, title: "Last 16 Closing Values", titleTextStyle: {color: '#b8bec5', fontName: "Poppins"} }, colors: ['#17c45c']  %>
                         <% else %>
-                          <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }, width: 800, height: 400, title: "Last 16 Closing Values", titleTextStyle: {color: '#b8bec5', fontName: "Poppins"} }, colors: ['#e43529']  %>
+                          <%= line_chart stock_by_day, adapter: "google", xtitle: "Days Ago", ytitle: "Previous Close", library: { hAxis: {direction: -1, textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, gridlineColor: '#3F4853', vAxis: {textStyle: { color: '#7E8B97'}, titleTextStyle: { color: '#7E8B97'}}, backgroundColor: { fill:'transparent' }, width: 750, height: 400, title: "Last 16 Closing Values", titleTextStyle: {color: '#b8bec5', fontName: "Poppins"} }, colors: ['#e43529']  %>
                         <% end %>
                       </div>
                     </div>
@@ -216,15 +216,15 @@
         </p>
       </div>
       <div class="d-flex justify-content-center">
-        <div class="collapse p-3 card-wallet text-stock shadow" id="addStock">
+        <div class="collapse <%= @show_collapse ? 'show' : '' %> p-3 card-wallet text-stock shadow" id="addStock">
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
                 <%= simple_form_for([@wallet, @wallet_stock]) do |f| %>
                   <%= f.input :date, input_html:{class: "input-fields my-1"}  %>
-                  <%= f.input :number_of_stock, input_html:{class: "input-fields my-1"}  %>
+                  <%= f.input :number_of_stock, input_html:{class: "input-fields my-1"}, label: 'Number of Stocks'  %>
                   <%= f.association :stock, collection: Stock.order(:name), input_html:{class: "input-fields my-1"}  %>
-                  <%= f.input :investment_stock, input_html:{class: "input-fields my-1"}  %>
+                  <%= f.input :investment_stock, input_html:{class: "input-fields my-1"}, label: 'Price per Stock'  %>
                   <%= f.submit class: "btn-text my-1",  value: "Add to Wallet" %>
                 <% end %>
               </div>
