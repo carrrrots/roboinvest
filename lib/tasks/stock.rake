@@ -8,8 +8,10 @@ namespace :stock do
   end
   task get_previous_close_to_array: :environment do
     unless %w[Sunday Saturday].include?(DateTime.now.strftime("%A"))
-      stocks = Stock.all
-      stocks.each(&:save)
+      if DateTime.now.new_offset("-03:00").hour == 11
+        stocks = Stock.all
+        stocks.each(&:save)
+      end
     end
   end
 end

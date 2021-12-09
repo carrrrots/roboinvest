@@ -63,8 +63,10 @@ class Stock < ApplicationRecord
   end
 
   def get_previous_close_to_array
-    array_stock.push(previous_close)
-    array_stock.shift
+    if DateTime.now.new_offset("-03:00").hour == 11
+      array_stock.push(previous_close)
+      array_stock.shift
+    end
   end
 end
 
