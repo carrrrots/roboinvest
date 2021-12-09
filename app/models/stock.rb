@@ -14,13 +14,20 @@ class Stock < ApplicationRecord
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)
     self.name = html_doc.css('.zzDege').text.strip
-    self.news = {} if news.length > 3
-    [0, 1, 2].each do |num|
+    self.news = {} if news.length > 4
+    [0, 1, 2, 3, 4, 5].each do |num|
+      time1 = html_doc.xpath('//div[@class="sfyJob"]')[num]&.text
+      time2 = html_doc.xpath('//div[@class="Adak"]')[num]&.text
+      text1 = html_doc.css('.Yfwt5')[num]&.text&.strip
+      website = html_doc.xpath('//div[@class="z4rs2b"]/a/@href')[num]&.value
+      image_src = html_doc.xpath('//img[@class="Z4idke"]/@src')[num]&.value
+      next if time1.blank? || time2.blank? || text1.blank? || website.blank? || image_src.blank?
+
       news[:"news_#{num + 1}"] = {
-        time: "#{html_doc.css('.sfyJob')[num].text.strip} · #{html_doc.css('.Adak')[num].text.strip}",
-        text: html_doc.css('.Yfwt5')[num].text.strip,
-        website: html_doc.xpath('//div[@class="z4rs2b"]/a/@href')[num].value,
-        image_src: html_doc.css('.Z4idke')[num]['src']
+        time: "#{time1} · #{time2}",
+        text: text1,
+        website: website,
+        image_src: image_src
       }
     end
     self.country = 'Brazil'
