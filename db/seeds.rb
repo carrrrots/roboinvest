@@ -12,7 +12,7 @@
 
 
   stock_symbols = %w[
-    ALPA4 ABEV3 AMER3 ASAI3 AZUL4 B3SA3 BIDI4 BIDI11 BPAN4 BBSE3
+    ALPA4 ABEV3 AZUL4 B3SA3 BIDI4 BIDI11 BPAN4 BBSE3
     BRML3 BBDC3 BBDC4 BRAP4 BBAS3 BRKM5 BRFS3 BPAC11 CRFB3 CCRO3
     CMIG4 CIEL3 COGN3 CPLE6 CSAN3 CPFE3 CVCB3 CYRE3 DXCO3 ECOR3
     ELET3 ELET6 EMBR3 ENBR3 ENGI11 ENEV3 EGIE3 EQTL3 EZTC3 FLRY3 GGBR4
@@ -24,7 +24,7 @@
   ]
   stock_symbols.each do |symbol|
     puts symbol
-    sleep(4)
+    sleep(3)
     Stock.new(symbol: symbol).save
   end
   # puts "Waiting for timeout"

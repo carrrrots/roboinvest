@@ -14,8 +14,8 @@ class Stock < ApplicationRecord
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)
     self.name = html_doc.css('.zzDege').text.strip
-    self.news = {} if news.length > 5
-    [0, 1, 2, 3, 4].each do |num|
+    self.news = {} if news.length > 3
+    [0, 1, 2].each do |num|
       news[:"news_#{num + 1}"] = {
         time: "#{html_doc.css('.sfyJob')[num].text.strip} · #{html_doc.css('.Adak')[num].text.strip}",
         text: html_doc.css('.Yfwt5')[num].text.strip,
